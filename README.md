@@ -1,10 +1,10 @@
 # IsrealPostalServiceAPI
 An API for Israel postal service
 
-![](https://img.shields.io/github/license/mashape/apistatus.svg)
-![](https://img.shields.io/bundlephobia/min/react.svg)
-![](https://img.shields.io/npm/v/:package.svg)
-![](https://img.shields.io/github/package-json/v/badges/shields.svg)
+[![licence](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bennymeg/IsrealPostalServiceAPI/blob/master/LICENSE)
+[![size](https://img.shields.io/bundlephobia/min/react.svg)](https://github.com/bennymeg/IsrealPostalServiceAPI)
+[![npm version](https://img.shields.io/npm/v/:package.svg)](https://www.npmjs.com/package/isreal-postal-service-api)
+[![github version](https://img.shields.io/github/package-json/v/badges/shields.svg)](https://github.com/bennymeg/IsrealPostalServiceAPI)
 
 
 ## Instalation
