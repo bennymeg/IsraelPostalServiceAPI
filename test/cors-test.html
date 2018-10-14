@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head> 
+        <meta charset="utf-8">   
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Post Office CORS test</title>   
+    </head>
+
+    <body>
+        <button onclick="createCORSRequest()">send</button>
+
+        <script>
+            var createCORSRequest = function () {
+                var method = 'GET';
+                var url = "http://www.israelpost.co.il/npostcalc.nsf/CalcPrice?openagent&lang=HE&menuChosen=%D7%9E%D7%A9%D7%9C%D7%95%D7%97+%D7%93%D7%95%D7%90%D7%A8+%D7%9C%D7%97%D7%95%22%D7%9C~%D7%A6%D7%A8%D7%95%D7%A8+%D7%A7%D7%98%D7%9F&serviceoption=%D7%93%D7%95%D7%90%D7%A8+%D7%90%D7%95%D7%99%D7%A8~%D7%9E%D7%A9%D7%9C%D7%95%D7%97+%D7%A8%D7%92%D7%99%D7%9C~C29&qty=1&shipqty=0&weight=33&cname=%D7%90%D7%A1%D7%A0%D7%A1%D7%99%D7%95%D7%9F%0A&_=1538931508025";
+                var xhr = new XMLHttpRequest();
+
+                if ("withCredentials" in xhr) {
+                    // Most browsers.
+                    xhr.open(method, url, true);
+                } else if (typeof XDomainRequest != "undefined") {
+                    // IE8 & IE9
+                    xhr = new XDomainRequest();
+                    xhr.open(method, url);
+                } else {
+                    // CORS not supported.
+                    xhr = null;
+                }
+
+                return xhr;
+            };
+            
+            var url = '';
+            var method = '';
+            var xhr = createCORSRequest(method, url);
+            
+            xhr.onload = function () {
+                // Success code goes here.
+                console.log("post office CORS supported!");
+                console.log(xhr.response);
+            };
+            
+            xhr.onerror = function () {
+                // Error code goes here.
+                console.log("post office CORS NOT supported!");
+            };
+            
+            xhr.send();
+        </script>
+
+    </body>
+</html>

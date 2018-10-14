@@ -1,0 +1,26 @@
+{
+  "name": "isreal-postal-service-api",
+  "version": "0.4.0",
+  "description": "Isreal postal office pricing calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "keywords": [
+    "isreal post",
+    "post service",
+    "package delivary",
+    "package pricing",
+    "post office"
+  ],
+  "author": "Benny Megidish",
+  "repository": "https://github.com/bennymeg/IsrealPostalServiceAPI.git",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  }
+}
