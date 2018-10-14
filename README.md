@@ -1,6 +1,12 @@
 # IsrealPostalServiceAPI
 An API for Israel postal service
 
+![](https://img.shields.io/github/license/mashape/apistatus.svg)
+![](https://img.shields.io/bundlephobia/min/react.svg)
+![](https://img.shields.io/npm/v/:package.svg)
+![](https://img.shields.io/github/package-json/v/badges/shields.svg)
+
+
 ## Instalation
 ```bash
 npm install --save isreal-postal-service-api
