@@ -1,3 +1,8 @@
+/**
+ * This module contains all the shipping options enumerations
+ * @author Benny Megidish
+ */
+
 const LocalMailOptions = {
     LETTER: { shipmentType: "מכתב", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null },
                                                             signed: { name: "רשום", options: { regular: "ללא אישור מסירה", with_delivery_verification: "עם אישור מסירה", with_delivery_and_scan_verification: "עם אישור מסירה וסריקה" } },

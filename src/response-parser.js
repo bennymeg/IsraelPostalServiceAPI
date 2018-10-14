@@ -1,18 +1,22 @@
+/**
+ * Handles Isreal postal service response
+ * @author Benny Megidish
+ */
 class ResponseParser {
     constructor(response) {
-        this.response = response;
-        this.prices = response["prices"];
+        this.response = JSON.parse(response);
+        this.prices = this.response.prices[0];
     }
 
     getPriceGroup() {
-        return this.response["pcode"];
+        return this.response.pcode;
     }
 
     getPrice() {
         let price = -1;
 
-        if (this.prices["Pprice"]) {
-            price = Number(this.prices["Pprice"]);
+        if (this.prices && this.prices.Pprice) {
+            price = Number(this.prices.Pprice);
         }
 
         return price;
@@ -21,25 +25,29 @@ class ResponseParser {
     getTotalPrice() {
         let price = -1;
 
-        if (this.prices["Ptotal"]) {
-            price = Number(this.prices["Ptotal"]);
+        if (this.prices && this.prices.Ptotal) {
+            price = Number(this.prices.Ptotal);
         }
 
         return price;
     }
 
     hasComments() {
-        return parseInt(this.responce["commTextsNo"]) > 0 || false;
+        return parseInt(this.response.commTextsNo) > 0 || false;
     }
 
     getComments() {
         let result = ""
 
         if (this.hasComments()) {
-            result = this.responce["commTexts"].map(comment => comment["ctext"])
+            result = this.response.commTexts.map(comment => comment.ctext);
         }
 
         return result;
+    }
+
+    getRawData() {
+        return this.response;
     }
 }
 

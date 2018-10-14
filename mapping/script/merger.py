@@ -2,6 +2,11 @@ import os
 import codecs
 import json
 
+"""
+This script combines all possible countrys destination into json files
+@author Benny Megidish
+"""
+
 def _getAdjacentDirectory(adjacentDirectoryName):
     return os.path.join(os.path.dirname(os.getcwd()), adjacentDirectoryName)
 

@@ -1,26 +1,28 @@
 const Options = require('./src/options');
-const ResponseParser = require('./src/response-parser');
+const ResponseParser = require('./src/response-parser').ResponseParser;
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
+/**
+ * Exposes Isreal postal service API
+ * @author Benny Megidish
+ */
 class IPS {
-    constructor(callback) {
-        this.callback = callback;
-    }
+    constructor() {}
 
     calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
         let destinationHE = getDestenetionHe(destination, shipmentType);
         let type = "משלוח דואר לחו\"ל";
         let serviceType = type + "~" + shipmentType;
 
-        calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
+        return calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
 
-    calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
+    async calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
         let destinationHE = "";
         let type = "משלוח דואר בארץ";
         let serviceType = type + "~" + shipmentType;
 
-        calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
+        return calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
 
     calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
@@ -28,7 +30,7 @@ class IPS {
         let type = "משלוח דואר כמותי";
         let serviceType = type + "~" + shipmentType;
 
-        calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
+        return calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
 }
 
@@ -62,18 +64,15 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     
     let xhr = createCORSRequest('GET', encodedUrlQuery);
 
-    xhr.onload = function () {
-        // Success
-        console.log("post office query succeded!");
-        console.log(xhr.responseText);        
-    };
-    
-    xhr.onerror = function () {
-        // Error
-        console.log("post office query failed!");
-    };
-    
-    xhr.send();
+    return new Promise((accept, reject) => {
+        xhr.onload = () => {
+            accept(new ResponseParser(xhr.responseText));
+        };
+        
+        xhr.onerror = reject;
+        
+        xhr.send();
+    });
 }
 
 function generateServiceOption(destination, serviceSubtype, option) {

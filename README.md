@@ -22,7 +22,15 @@ let serviceType = Options.AbroadMailOptions.LETTER.shipmentType;
 let serviceSubtype = Options.AbroadMailOptions.LETTER.shipmentSubtypes.regular;
 let option = serviceSubtype.options.signed;
 
-// calculate package shipping rate
-let ips = new IPS();
-ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option);
+// calculate package shipping rate asynchronously
+calc = async () => {
+    try {
+        const response = await ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option);
+        console.log(response.getTotalPrice());
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+calc();
 ```
