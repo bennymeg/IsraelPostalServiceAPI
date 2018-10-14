@@ -1,5 +1,6 @@
 const Options = require('./src/options');
 const ResponseParser = require('./src/response-parser').ResponseParser;
+const Destinations = require('./src/destenations').Destinations;
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 /**
@@ -7,10 +8,12 @@ const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
  * @author Benny Megidish
  */
 class IPS {
-    constructor() {}
+    constructor() {
+        this.destinations = new Destinations();
+    }
 
-    calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = getDestenetionHe(destination, shipmentType);
+    async calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
+        let destinationHE = this.destinations.getDestenetionHe(destination, shipmentType);
         let type = "משלוח דואר לחו\"ל";
         let serviceType = type + "~" + shipmentType;
 
@@ -26,18 +29,12 @@ class IPS {
     }
 
     calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = getDestenetionHe(destination, shipmentType);
+        let destinationHE = this.destinations.getDestenetionHe(destination, shipmentType);
         let type = "משלוח דואר כמותי";
         let serviceType = type + "~" + shipmentType;
 
         return calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
-}
-
-function getDestenetionHe(destination, shipmentType) {
-    //todo
-
-    return {name: "גרמניה", id: "83"}  // test
 }
 
 function calculateShippingRate(destination, weight, serviceType, serviceSubtype, option, quantity=1, language="HE", shipmentQuantity="0") {

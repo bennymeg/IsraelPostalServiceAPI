@@ -1,12 +1,11 @@
 # IsrealPostalServiceAPI
 An API for Israel postal service
 
-## Example
-
-### Instalation:
+## Instalation
 ```bash
 npm install --save isreal-postal-service-api
 ```
+## Usage
 
 ### Import library:
 ```javascript
