@@ -8,7 +8,7 @@ const eShipmentType = {
     ALL: "",
     PARCEL: "חבילה",        // "parcel"
     EMS: "EMS",             // "ems"
-    ECONOMIC: "eco sost"    // "eco"
+    ECONOMIC: "eco post"    // "eco"
 }
 
 // TODO: disjoint json source files to save memory and improve loading speed!!!?
@@ -22,10 +22,10 @@ class Destinations {
 
         for (var i = 0; i < arguments.length; i++) {
             let argument = arguments[i];
-
+            
             if (typeof argument === 'string' || argument instanceof String) {
-                if (Object.values(this.eShipmentType).includes(argument)) {
-                    loadDestinationMap(argument);
+                if (Object.values(eShipmentType).includes(argument)) {
+                    this.loadDestinationMap(argument);
                 }
             }
         }
@@ -96,21 +96,26 @@ class Destinations {
     }
 
     _verifyDesitetionMapLoaded(shipmentType) {
+        let isLoaded = true;
+
         switch (shipmentType) { 
-            case "parcel":
+            case "חבילה":
                 if (!this.parcelDestinationMap) {
+                    isLoaded = false;
                     this.loadDestinationMap(shipmentType);
                 }
 
                 break;
-            case "ems":
+            case "EMS":
                 if (!this.emsDestinationMap) {
+                    isLoaded = false;
                     this.loadDestinationMap(shipmentType);
                 }
 
                 break;
-            case "eco":
+            case "eco post":
                 if (!this.economicDestinationMap) {
+                    isLoaded = false;
                     this.loadDestinationMap(shipmentType); 
                 }
 
@@ -118,11 +123,14 @@ class Destinations {
             case "":
             default:
                 if (!this.globalDestinationMap) {
+                    isLoaded = false;
                     this.loadDestinationMap(shipmentType);
                 }
 
                 break;
         }
+
+        return isLoaded;
     }
 }
 

@@ -13,7 +13,7 @@ class ResponseParser {
     }
 
     getPrice() {
-        let price = -1;
+        let price;
 
         if (this.prices && this.prices.Pprice) {
             price = Number(this.prices.Pprice);
@@ -23,7 +23,7 @@ class ResponseParser {
     }
 
     getTotalPrice() {
-        let price = -1;
+        let price;
 
         if (this.prices && this.prices.Ptotal) {
             price = Number(this.prices.Ptotal);
