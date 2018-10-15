@@ -1,5 +1,5 @@
 /**
- * Handles Isreal postal service response
+ * Handles Israel postal service response
  * @author Benny Megidish
  */
 class ResponseParser {

@@ -4,7 +4,7 @@ const Destinations = require('./src/destenations').Destinations;
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 /**
- * Exposes Isreal postal service API
+ * Exposes Israel postal service API
  * @author Benny Megidish
  */
 class IPS {
