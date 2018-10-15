@@ -22,14 +22,18 @@ const Options = require('israel-postal-service-api').Options;
 const IPS = require('israel-postal-service-api').IPS;
 ```
 
-### Calculate Shipping Rate:
+### Define Package Characteristics:
 ```javascript
 // define package characteristics
 let weightInGrams = 20;
 let serviceType = Options.AbroadMailOptions.LETTER.shipmentType;
 let serviceSubtype = Options.AbroadMailOptions.LETTER.shipmentSubtypes.regular;
 let option = serviceSubtype.options.signed;
+```
 
+### Calculate Shipping Rate:
+#### Option 1: with async await
+```javascript
 // calculate package shipping rate asynchronously
 calc = async () => {
     try {
@@ -41,4 +45,14 @@ calc = async () => {
 }
 
 calc();
+```
+
+#### Option 2: with promises
+```javascript
+// calculate package shipping rate asynchronously
+ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option).then((response) => {
+    console.log(response.getTotalPrice());
+}).catch((error) => {
+    console.error('Error:', error);
+});
 ```
