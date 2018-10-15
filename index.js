@@ -11,7 +11,7 @@ class IPS {
         this.destinations = new Destinations();
     }
 
-    async calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
+    calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
         let destinationHE = this.destinations.getDestenetionHe(destination, shipmentType);
         let type = "משלוח דואר לחו\"ל";
         let serviceType = type + "~" + shipmentType;
@@ -19,7 +19,7 @@ class IPS {
         return Utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
 
-    async calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
+    calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
         let destinationHE = "";
         let type = "משלוח דואר בארץ";
         let serviceType = type + "~" + shipmentType;

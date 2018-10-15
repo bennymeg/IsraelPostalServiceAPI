@@ -33,7 +33,17 @@ let ips = new IPS();
 ```
 
 ### Calculate Shipping Rate:
-#### Option 1: with async await
+#### _Option 1: with promises_
+```javascript
+// calculate package shipping rate asynchronously
+ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option).then((response) => {
+    console.log(response.getTotalPrice());
+}).catch((error) => {
+    console.error('Error:', error);
+});
+```
+
+#### _Option 2: with async await_
 ```javascript
 // calculate package shipping rate asynchronously
 calc = async () => {
@@ -48,12 +58,7 @@ calc = async () => {
 calc();
 ```
 
-#### Option 2: with promises
-```javascript
-// calculate package shipping rate asynchronously
-ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option).then((response) => {
-    console.log(response.getTotalPrice());
-}).catch((error) => {
-    console.error('Error:', error);
-});
-```
+> This API was create as an open source service for makers and entrepreneurs.
+> _This is not an official service API for Israel Post_.
+
+***Author:*** Benny Megidish.
