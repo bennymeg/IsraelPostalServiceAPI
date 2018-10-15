@@ -58,6 +58,13 @@ calc = async () => {
 calc();
 ```
 
+
+## Documentation ##  
+👨🏼‍💻 [API](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/API.md),  
+👩🏼‍🏫 [Examples](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/examples),  
+📜 [Change log](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/CHANGELOG.md),  
+🖋 [Licence](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
+
 > This API was create as an open source service for makers and entrepreneurs.
 > _This is not an official service API for Israel Post_.
 
