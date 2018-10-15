@@ -29,6 +29,7 @@ let weightInGrams = 20;
 let serviceType = Options.AbroadMailOptions.LETTER.shipmentType;
 let serviceSubtype = Options.AbroadMailOptions.LETTER.shipmentSubtypes.regular;
 let option = serviceSubtype.options.signed;
+let ips = new IPS();
 ```
 
 ### Calculate Shipping Rate:
