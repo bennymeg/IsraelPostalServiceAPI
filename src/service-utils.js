@@ -20,6 +20,7 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     }
 
     // generate request
+    //"http://www.israelpost.co.il/npostcalc.nsf/CalcPrice?openagent&lang=HE&menuChosen=%D7%9E%D7%A9%D7%9C%D7%95%D7%97+%D7%93%D7%95%D7%90%D7%A8+%D7%9C%D7%97%D7%95%22%D7%9C~%D7%A6%D7%A8%D7%95%D7%A8+%D7%A7%D7%98%D7%9F&serviceoption=%D7%93%D7%95%D7%90%D7%A8+%D7%90%D7%95%D7%99%D7%A8~%D7%9E%D7%A9%D7%9C%D7%95%D7%97+%D7%A8%D7%92%D7%99%D7%9C~C29&qty=1&shipqty=0&weight=33&cname=%D7%90%D7%A1%D7%A0%D7%A1%D7%99%D7%95%D7%9F%0A&_=1538931508025"
     let url = "http://www.israelpost.co.il/npostcalc.nsf/CalcPrice?openagent";
     let queryString = Object.keys(parameters).map(key => key + '=' + parameters[key]).join('&');
     let encodedUrlQuery = encodeURI(url + "&" + queryString.replace(/\s/g, "+"));
@@ -41,14 +42,15 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
 }
 
 function generateServiceOption(destination, serviceSubtype, option) {
-    let serviceOption = serviceSubtype["name"];
+    let serviceOption = serviceSubtype["name"];   
+    let availableOptions = serviceSubtype["options"];
 
     if (option) {
         // concatinate option if provided
         serviceOption += "~" + option;
-    } else if (!option && serviceSubtype["option"]) {
+    } else if (!option && availableOptions) {
         // concatinate first option (default) if available
-        serviceOption += "~" + serviceSubtype["option"][0]; //???
+        serviceOption += "~" + availableOptions[Object.keys(availableOptions)[0]];
     }
  
     if (destination != "")
