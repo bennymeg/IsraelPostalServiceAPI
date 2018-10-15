@@ -1,9 +1,40 @@
-import { assert } from 'chai';
-//const assert = require('chai').assert; 
+const main = require('../index');
+const options = require('../src/options');
+const assert = require('chai').assert; 
 
 describe('Service', () => {
-    it('should return simple test', () => {
-        let result = 4;
-        assert.equal(result, "4");
+    let ips = new main.IPS();
+
+    it('should calculate abroad shipping price', () => {
+        let abroadServiceType = options.AbroadMailOptions.SMALL.shipmentType;
+        let abroadServiceSubtype = options.AbroadMailOptions.SMALL.shipmentSubtypes.regular;
+
+        ips.calculateAbroadShippingRate("Italy", 10, abroadServiceType, abroadServiceSubtype).then((result) => {
+            assert.isTrue(result.getTotalPrice() > 0);
+        }).catch(() => {
+            assert.fail();
+        })
+    });
+
+    it('should calculate local shipping price', () => {
+        let localServiceType = options.LocalMailOptions.LETTER.shipmentType;
+        let localServiceSubtype = options.LocalMailOptions.LETTER.shipmentSubtypes.regular;
+
+        ips.calculateLocalShippingRate(10, localServiceType, localServiceSubtype).then((result) => {
+            assert.isTrue(result.getTotalPrice() > 0);
+        }).catch(() => {
+            assert.fail();
+        })
+    });
+
+    it('should calculate bulk shipping price', () => {
+        let bulkServiceType = options.BulkMailOptions.LOCAL_LETTER.shipmentType;
+        let bulkServiceSubtype = options.BulkMailOptions.LOCAL_LETTER.shipmentSubtypes.regular;
+        
+        ips.calculateAbroadShippingRate("Spain", 10, bulkServiceType, bulkServiceSubtype).then((result) => {
+            assert.isTrue(result.getTotalPrice() > 0);
+        }).catch(() => {
+            assert.fail();
+        })
     });
 });
