@@ -1,6 +1,6 @@
 {
   "name": "israel-postal-service-api",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Israel postal office pricing calculator",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   "keywords": [
     "israel post",
     "post service",
-    "package delivary",
+    "package delivery",
     "package pricing",
     "post office"
   ],

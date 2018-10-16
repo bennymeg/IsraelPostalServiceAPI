@@ -5,6 +5,19 @@ const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
  * Utilities module
  * @author Benny Megidish
  */
+
+/**
+ * calculate shipping rate for all the shipment types
+ * @param {object} destination destination object
+ * @param {float} weight weight of the shipment in grams
+ * @param {string} serviceType type of service 
+ * @param {object} shipmentSubtype subtype of shipment (as define in the shipmentType {@class Options})
+ * @param {string} serviceOption additional service options (nullable) (as generated in {@link generateServiceOption})
+ * @param {integer} quantity amount of packages
+ * @param {string} language API language
+ * @param {string} shipmentQuantity shipment quantity
+ * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (see {@class ResponseParser})
+ */
 function calculateShippingRate(destination, weight, serviceType, serviceSubtype, option, quantity=1, language="HE", shipmentQuantity="0") {
     let serviceOption = generateServiceOption(destination, serviceSubtype, option);
     
@@ -12,9 +25,9 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     let parameters = { 
         lang: language,
         menuChosen: serviceType,
-        serviceoption: serviceOption,
+        serviceoption: serviceOption,   // ignore wired naming, due to bad postal service API
         qty: quantity,
-        shipqty: shipmentQuantity,
+        shipqty: shipmentQuantity,      // ignore wired naming, due to bad postal service API
         weight: weight,
         cname: destination["name"]
     }
@@ -41,15 +54,22 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     });
 }
 
+/**
+ * generate service options string
+ * @param {object} destination destination object
+ * @param {object} serviceSubtype service subtype as describes in the {@class Options} class
+ * @param {string} option additional service options
+ * @returns {string} service options string
+ */
 function generateServiceOption(destination, serviceSubtype, option) {
     let serviceOption = serviceSubtype["name"];   
     let availableOptions = serviceSubtype["options"];
 
     if (option) {
-        // concatinate option if provided
+        // concatenate option if provided
         serviceOption += "~" + option;
     } else if (!option && availableOptions) {
-        // concatinate first option (default) if available
+        // concatenate first option (default) if available
         serviceOption += "~" + availableOptions[Object.keys(availableOptions)[0]];
     }
  
@@ -59,6 +79,12 @@ function generateServiceOption(destination, serviceSubtype, option) {
     return serviceOption;
 }
 
+/**
+ * generate request object for the  provided method and url
+ * @param {string} method request method (i.e. 'GET')
+ * @param {string} url request url
+ * @return {object} {@class XMLHttpRequest} or {@class XDomainRequest} or null if not available
+ */
 function createCORSRequest(method, url) {
     var xhr = new XMLHttpRequest();
 

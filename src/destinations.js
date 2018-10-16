@@ -1,18 +1,9 @@
 /**
- * Loads and retrives destination data
+ * Loads and retrieves destination data
  * @author Benny Megidish
  */
-
-const eShipmentType = {
-    // TODO: check all cases in options
-    ALL: "",
-    PARCEL: "חבילה",        // "parcel"
-    EMS: "EMS",             // "ems"
-    ECONOMIC: "eco post"    // "eco"
-}
-
-// TODO: disjoint json source files to save memory and improve loading speed!!!?
 class Destinations {
+    // TODO: disjoint json source files to save memory and improve loading speed!!!?
     constructor() {
         // load mapping lazily to save time
         this.globalDestinationMap = undefined;
@@ -31,6 +22,10 @@ class Destinations {
         }
     }
 
+    /**
+     * loads the current destination mapping in a lazy manner
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     */
     loadDestinationMap(shipmentType) {
         switch (shipmentType) { 
             case "חבילה":
@@ -49,9 +44,15 @@ class Destinations {
         }
     }
 
-    getDestenetionHe(destination, shipmentType) {
+    /**
+     * return destination object for the hebrew postal service API
+     * @param {string} destination destination name in Camel-Case format
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     * @returns {object} destination object (if exists), or an empty string
+     */
+    getDestinationHe(destination, shipmentType) {
         let result = "";
-        this._verifyDesitetionMapLoaded(shipmentType);
+        this._verifyDestinationMapLoaded(shipmentType);
 
         switch (shipmentType) { 
             case "חבילה":
@@ -72,9 +73,14 @@ class Destinations {
         return result;
     }
 
+    /**
+     * return all the available destination for the shipment type
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     * @returns {array} array that contains all the available destination for the shipment type
+     */
     getAllDestination(shipmentType) {
         let result;
-        this._verifyDesitetionMapLoaded(shipmentType);
+        this._verifyDestinationMapLoaded(shipmentType);
                 
         switch (shipmentType) { 
             case "חבילה":
@@ -95,7 +101,12 @@ class Destinations {
         return result;
     }
 
-    _verifyDesitetionMapLoaded(shipmentType) {
+    /**
+     * verifies that the appropriate mapping for the shipment type is loaded, if not, it loads it.
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     * @returns {boolean} true, if the appropriate mapping was already loaded, false otherwise
+     */
+    _verifyDestinationMapLoaded(shipmentType) {
         let isLoaded = true;
 
         switch (shipmentType) { 
@@ -132,6 +143,14 @@ class Destinations {
 
         return isLoaded;
     }
+}
+
+// TODO: check all cases in options
+const eShipmentType = {
+    ALL: "",
+    PARCEL: "חבילה",        // "parcel"
+    EMS: "EMS",             // "ems"
+    ECONOMIC: "eco post"    // "eco"
 }
 
 module.exports.Destinations = Destinations;

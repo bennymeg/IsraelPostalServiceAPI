@@ -1,9 +1,9 @@
-const main = require('../index');
+const IPS = require('../index').IPS;
 const options = require('../src/options');
 const assert = require('chai').assert; 
 
 describe('Service', () => {
-    let ips = new main.IPS();
+    let ips = new IPS();
 
     it('should calculate abroad shipping price', () => {
         let abroadServiceType = options.AbroadMailOptions.SMALL.shipmentType;

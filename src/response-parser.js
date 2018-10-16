@@ -3,15 +3,26 @@
  * @author Benny Megidish
  */
 class ResponseParser {
+    // ignore wired naming, due to bad postal service API
+    /**
+     * Parses israel post response and provides easy way to consume the data
+     * @param {string} response the response the have been received from the israel-post server
+     */
     constructor(response) {
         this.response = JSON.parse(response);
         this.prices = this.response.prices[0];
     }
 
+    /**
+     * @returns {string} price group of the shipment
+     */
     getPriceGroup() {
         return this.response.pcode;
     }
 
+    /**
+     * @returns {number} shipment price for individual package
+     */
     getPrice() {
         let price;
 
@@ -22,6 +33,9 @@ class ResponseParser {
         return price;
     }
 
+    /**
+     * @returns {number} shipment price for the entire shipment
+     */
     getTotalPrice() {
         let price;
 
@@ -32,10 +46,16 @@ class ResponseParser {
         return price;
     }
 
+    /**
+     * @returns {boolean} whether we have comments about the method
+     */
     hasComments() {
         return parseInt(this.response.commTextsNo) > 0 || false;
     }
 
+    /**
+     * @returns {array<string>} array of comments about the method if available
+     */
     getComments() {
         let result = ""
 
@@ -46,6 +66,9 @@ class ResponseParser {
         return result;
     }
 
+    /**
+     * @returns {string} raw json response from the server
+     */
     getRawData() {
         return this.response;
     }
