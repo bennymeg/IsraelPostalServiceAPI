@@ -1,5 +1,5 @@
 # IsraelPostalServiceAPI
-An API for Israel postal service
+An API for Israel postal service - query shipment price easily.
 
 [![licence](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 [![size](https://img.shields.io/bundlephobia/min/react.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI)
@@ -7,7 +7,7 @@ An API for Israel postal service
 [![github version](https://img.shields.io/github/package-json/v/badges/shields.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI)
 
 
-## Instalation
+## Installation
 ```bash
 npm install --save israel-postal-service-api
 ```
