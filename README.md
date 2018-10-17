@@ -60,12 +60,32 @@ calc();
 
 
 ## Documentation ##  
-👨🏼‍💻 [API](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/API.md),  
-👩🏼‍🏫 [Examples](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/examples),  
-📜 [Change log](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/CHANGELOG.md),  
-🖋 [Licence](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
+- 👨🏼‍💻 [API](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/API.md),  
+- 👩🏼‍🏫 [Examples](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/examples),  
+- 📜 [Change log](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/CHANGELOG.md),  
+- 🖋 [Licence](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 
+## Support ##
+If you're having any problem, please [raise an issue](https://github.com/bennymeg/IsraelPostalServiceAPI/issues/new) on GitHub and we'll be happy to help.
+
+
+## Contribute ##
+- 👾 [Issue Tracker](https://github.com/bennymeg/IsraelPostalServiceAPI/issues),
+- 📦 [Source Code](https://github.com/bennymeg/IsraelPostalServiceAPI/)
+
+Before submitting a PR, please make sure that you include tests, and that [jshint](http://jshint.com) runs without any warnings
+
+## Test ## 
+Run the test suite by executing:
+
+```sh
+$ npm test
+```
+
+
+___
+> ***Note***:
 > This API was create as an open source service for makers and entrepreneurs.
-> _This is not an official service API for Israel Post_.
+> _This is not an official API for Israel Post service_.
 
-***Author:*** Benny Megidish.
+**Author:** Benny Megidish.

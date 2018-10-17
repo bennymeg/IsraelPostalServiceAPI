@@ -1,20 +1,24 @@
 {
   "name": "israel-postal-service-api",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "Israel postal office pricing calculator",
   "main": "index.js",
+  "homepage": "https://github.com/bennymeg/IsraelPostalServiceAPI",
   "scripts": {
     "test": "mocha --recursive || true"
   },
   "keywords": [
     "israel post",
-    "post service",
+    "postal service",
     "package delivery",
     "package pricing",
     "post office"
   ],
   "author": "Benny Megidish",
-  "repository": "https://github.com/bennymeg/IsraelPostalServiceAPI.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bennymeg/IsraelPostalServiceAPI.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
