@@ -29,7 +29,7 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
         qty: quantity,
         shipqty: shipmentQuantity,      // ignore wired naming, due to bad postal service API
         weight: weight,
-        cname: destination["name"]
+        cname: destination.name
     }
 
     // generate request
@@ -62,8 +62,8 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
  * @returns {string} service options string
  */
 function generateServiceOption(destination, serviceSubtype, option) {
-    let serviceOption = serviceSubtype["name"];   
-    let availableOptions = serviceSubtype["options"];
+    let serviceOption = serviceSubtype.name;   
+    let availableOptions = serviceSubtype.options;
 
     if (option) {
         // concatenate option if provided
@@ -74,7 +74,7 @@ function generateServiceOption(destination, serviceSubtype, option) {
     }
  
     if (destination != "")
-        serviceOption += "~C" + destination["id"];
+        serviceOption += "~C" + destination.id;
 
     return serviceOption;
 }

@@ -1,9 +1,6 @@
 # IsraelPostalServiceAPI
 An API for Israel postal service
 
-***Note:*** this package is still under constuction.
-if you wish to help, please look at the next milestone at the github repository and submite a pull request.
-
 [![licence](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 [![size](https://img.shields.io/bundlephobia/min/react.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI)
 [![npm version](https://img.shields.io/npm/v/:package.svg)](https://www.npmjs.com/package/israel-postal-service-api)
@@ -46,7 +43,7 @@ ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubt
 #### _Option 2: with async await_
 ```javascript
 // calculate package shipping rate asynchronously
-calc = async () => {
+calculatePrice = async () => {
     try {
         const response = await ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option);
         console.log(response.getTotalPrice());
@@ -55,7 +52,8 @@ calc = async () => {
     }
 }
 
-calc();
+// invoke function
+calculatePrice();
 ```
 
 
@@ -73,7 +71,7 @@ If you're having any problem, please [raise an issue](https://github.com/bennyme
 - 👾 [Issue Tracker](https://github.com/bennymeg/IsraelPostalServiceAPI/issues),
 - 📦 [Source Code](https://github.com/bennymeg/IsraelPostalServiceAPI/)
 
-Before submitting a PR, please make sure that you include tests, and that [jshint](http://jshint.com) runs without any warnings
+Before submitting a pull request, please make sure that you include tests, and that [jshint](http://jshint.com) runs without any warnings: [Download VSCode extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.jshint).
 
 ## Test ## 
 Run the test suite by executing:

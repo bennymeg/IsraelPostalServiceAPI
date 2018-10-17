@@ -57,7 +57,7 @@ class ResponseParser {
      * @returns {array<string>} array of comments about the method if available
      */
     getComments() {
-        let result = ""
+        let result = "";
 
         if (this.hasComments()) {
             result = this.response.commTexts.map(comment => comment.ctext);
