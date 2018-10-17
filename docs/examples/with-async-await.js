@@ -10,6 +10,9 @@ let option = null;
 let ips = new IPS();
 
 
+// Code here will be ignored by JSHint. until ver. 2.10.0 will be released!
+/* jshint ignore:start */
+
 // calculate package shipping rate asynchronously
 calculatePrice = async () => {
     try {
@@ -20,6 +23,8 @@ calculatePrice = async () => {
         console.error('Error:', error);
     }
 }
+
+/* jshint ignore:end */
 
 // invoke the asynchronous method
 calculatePrice();

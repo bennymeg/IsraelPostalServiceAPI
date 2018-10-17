@@ -55,7 +55,7 @@ describe('Service Utilities', () => {
                 assert.isTrue(result.getTotalPrice() > 0);
             }).catch(() => {
                 assert.fail();
-            })
+            });
         });
     });
 });

@@ -11,7 +11,7 @@ class Destinations {
         this.emsDestinationMap = undefined;
         this.economicDestinationMap = undefined;
 
-        for (var i = 0; i < arguments.length; i++) {
+        for (let i = 0; i < arguments.length; i++) {
             let argument = arguments[i];
             
             if (typeof argument === 'string' || argument instanceof String) {
@@ -37,7 +37,7 @@ class Destinations {
             case "eco post":
                 this.economicDestinationMap = require('../mapping/data/destination-map-eco.json');
                 break;
-            case "":
+            //case "":
             default:
                 this.globalDestinationMap = require('../mapping/data/destination-map.json'); 
                 break;
@@ -64,7 +64,7 @@ class Destinations {
             case "eco post":
                 result = this.economicDestinationMap[destination];
                 break;
-            case "":
+            //case "":
             default:
                 result = this.globalDestinationMap[destination];
                 break;
@@ -92,7 +92,7 @@ class Destinations {
             case "eco post":
                 result = Object.keys(this.economicDestinationMap);
                 break;
-            case "":
+            //case "":
             default:
                 result = Object.keys(this.globalDestinationMap);
                 break;
@@ -131,7 +131,7 @@ class Destinations {
                 }
 
                 break;
-            case "":
+            //case "":
             default:
                 if (!this.globalDestinationMap) {
                     isLoaded = false;
@@ -151,6 +151,6 @@ const eShipmentType = {
     PARCEL: "חבילה",        // "parcel"
     EMS: "EMS",             // "ems"
     ECONOMIC: "eco post"    // "eco"
-}
+};
 
 module.exports.Destinations = Destinations;

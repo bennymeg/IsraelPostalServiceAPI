@@ -13,7 +13,7 @@ describe('Service', () => {
             assert.isTrue(result.getTotalPrice() > 0);
         }).catch(() => {
             assert.fail();
-        })
+        });
     });
 
     it('should calculate local shipping price', () => {
@@ -24,7 +24,7 @@ describe('Service', () => {
             assert.isTrue(result.getTotalPrice() > 0);
         }).catch(() => {
             assert.fail();
-        })
+        });
     });
 
     it('should calculate bulk shipping price', () => {
@@ -35,6 +35,6 @@ describe('Service', () => {
             assert.isTrue(result.getTotalPrice() > 0);
         }).catch(() => {
             assert.fail();
-        })
+        });
     });
 });
