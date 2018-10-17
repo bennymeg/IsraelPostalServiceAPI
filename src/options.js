@@ -10,7 +10,7 @@ const LocalMailOptions = {
                                                         signedOvernight: { name: "רשום מהיר", options: null }} },
     POSTCARD: { shipmentType: "גלויה", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null }} },
     PARCEL: { shipmentType: "חבילה", shipmentSubtypes: { regular: { name: "מסניף לסניף", options: null },
-                                                         regular: { name: "למען של דואר צבאי", options: null }} },
+                                                         military: { name: "למען של דואר צבאי", options: null }} },
     LEAFLETS: { shipmentType: "עלונים", shipmentSubtypes: { regular: { name: "חלוקת עלונים", options: null },
                                                             overnight: { name: "עלון 24", options: { toDispatchCenter: "חלוקה למרכזי חלוקה", byHand: "חלוקה רגלית" } }} }
 };
