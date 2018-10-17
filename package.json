@@ -8,11 +8,16 @@
     "test": "mocha --recursive || true"
   },
   "keywords": [
-    "israel post",
-    "postal service",
-    "package delivery",
-    "package pricing",
-    "post office"
+    "Israel",
+    "Postal",
+    "Service",
+    "Shipping",
+    "Shipment",
+    "Delivery",
+    "Package",
+    "Mail",
+    "Pricing",
+    "Calculator"
   ],
   "author": "Benny Megidish",
   "repository": {
