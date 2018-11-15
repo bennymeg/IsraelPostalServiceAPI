@@ -1,5 +1,15 @@
 const ResponseParser = require('./response-parser').ResponseParser;
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+let XMLHttpRequest = null;
+
+// load correct XMLHttpRequest module according to the environment
+if (process.browser) {
+    // we are running in browserify / webpack environment. (dont use fs, child_process, etc..)
+    XMLHttpRequest = require('xhr');
+} else { 
+    // we are running in node environment
+    XMLHttpRequest = module.require("xmlhttprequest").XMLHttpRequest;
+}
+
 
 /**
  * Utilities module
@@ -38,19 +48,33 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     let queryString = Object.keys(parameters).map(key => key + '=' + parameters[key]).join('&');
     let encodedUrlQuery = encodeURI(url + "&" + queryString.replace(/\s/g, "+"));
     
-    let xhr = createCORSRequest('GET', encodedUrlQuery);
-
     // send request and return a promise
     return new Promise((accept, reject) => {
-        xhr.onload = () => {
-            accept(new ResponseParser(xhr.responseText));
-        };
-        
-        xhr.onerror = () => {
-            reject(xhr.statusText);
-        };
-        
-        xhr.send();
+        if (process.browser) {
+            // we are running in browserify / webpack environment
+            let useXDR = typeof XDomainRequest != "undefined" ? true : false;
+
+            XMLHttpRequest.get(encodedUrlQuery, {useXDR: useXDR}, (error, response) => {
+                if (error != null) {
+                    reject(error);
+                } else {
+                    accept(new ResponseParser(response.body));
+                }
+            });
+        } else {
+            // we are running in node environment
+            let request = createCORSRequest('GET', encodedUrlQuery);
+
+            request.onload = () => {
+                accept(new ResponseParser(request.responseText));
+            };
+            
+            request.onerror = () => {
+                reject(request.statusText);
+            };
+            
+            request.send();
+        }
     });
 }
 
@@ -80,27 +104,31 @@ function generateServiceOption(destination, serviceSubtype, option) {
 }
 
 /**
- * generate request object for the  provided method and url
+ * generate request object for the  provided method and url (for node environment only)
  * @param {string} method request method (i.e. 'GET')
  * @param {string} url request url
  * @return {object} {@class XMLHttpRequest} or {@class XDomainRequest} or null if not available
  */
 function createCORSRequest(method, url) {
-    let xhr = new XMLHttpRequest();
+    let request = null;
 
-    if ("withCredentials" in xhr) {
-        // Most browsers.
-        xhr.open(method, url, true);
-    } else if (typeof XDomainRequest != "undefined") {
-        // IE8 & IE9
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-    } else {
-        // CORS not supported.
-        xhr = null;
+    if (!process.browser) {
+        request = new XMLHttpRequest();
+
+        if ("withCredentials" in request) {
+            // Most browsers.
+            request.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+            // IE8 & IE9
+            request = new XDomainRequest();
+            request.open(method, url);
+        } else {
+            // CORS not supported.
+            request = null;
+        }
     }
 
-    return xhr;
+    return request;
 }
 
 module.exports.calculateShippingRate = calculateShippingRate;
