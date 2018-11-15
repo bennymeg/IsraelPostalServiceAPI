@@ -1,6 +1,6 @@
 {
   "name": "israel-postal-service-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Israel postal office pricing calculator",
   "main": "index.js",
   "homepage": "https://github.com/bennymeg/IsraelPostalServiceAPI",
@@ -32,6 +32,7 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "xhr": "^2.5.0",
     "xmlhttprequest": "^1.8.0"
   }
 }
