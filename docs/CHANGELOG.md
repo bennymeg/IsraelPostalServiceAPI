@@ -1,6 +1,16 @@
 # Change Log
 
 <a name=""></a>
+## [1.1.3](https://github.com/electron-userland/electron-builder/compare/v1.0.0...v1.1.3) (2018-11-16)
+
+### Features
+* added support for browserify / webpack
+* works properly on angular project
+
+### Bug Fixes
+* fix mapping BOM encoding error
+
+<a name=""></a>
 # [1.0.0](https://github.com/electron-userland/electron-builder/compare/v0.7.2...v1.0.0) (2018-10-18)
 
 ### Initial stable release
