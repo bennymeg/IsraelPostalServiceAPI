@@ -18,6 +18,11 @@ npm install --save israel-postal-service-api
 const Options = require('israel-postal-service-api').Options;
 const IPS = require('israel-postal-service-api').IPS;
 ```
+_- or -_
+
+```javascript
+import { IPS, Options } from 'israel-postal-service-api';
+```
 
 ### Define Package Characteristics:
 ```javascript
@@ -26,6 +31,8 @@ let weightInGrams = 20;
 let serviceType = Options.AbroadMailOptions.LETTER.shipmentType;
 let serviceSubtype = Options.AbroadMailOptions.LETTER.shipmentSubtypes.regular;
 let option = serviceSubtype.options.signed;
+
+// initialize service
 let ips = new IPS();
 ```
 
@@ -34,7 +41,7 @@ let ips = new IPS();
 ```javascript
 // calculate package shipping rate asynchronously
 ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option).then((response) => {
-    console.log(response.getTotalPrice());
+    console.log(response.getTotalPrice());  // see {@class ResponseParser} API to discover all the available data
 }).catch((error) => {
     console.error('Error:', error);
 });
