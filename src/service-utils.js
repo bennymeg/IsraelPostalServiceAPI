@@ -7,7 +7,7 @@ if (process.browser) {
     XMLHttpRequest = require('xhr');
 } else { 
     // we are running in node environment
-    XMLHttpRequest = module.require("xmlhttprequest").XMLHttpRequest;
+    XMLHttpRequest = module.require('xmlhttprequest').XMLHttpRequest;
 }
 
 
@@ -54,7 +54,7 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
             // we are running in browserify / webpack environment
             let useXDR = typeof XDomainRequest != "undefined" ? true : false;
 
-            XMLHttpRequest.get(encodedUrlQuery, {useXDR: useXDR}, (error, response) => {
+            XMLHttpRequest.get(encodedUrlQuery, { useXDR: useXDR }, (error, response) => {
                 if (error != null) {
                     reject(error);
                 } else {
