@@ -68,7 +68,7 @@ class IPS {
     /**
      * return all the available destination for the shipment type
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
-     * @returns {array} array that contains all the available destination for the shipment type
+     * @returns {string[]} array that contains all the available destination for the shipment type
      */
     getAllDestination(shipmentType) {
         return this.destinations.getAllDestination(shipmentType);
