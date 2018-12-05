@@ -124,4 +124,43 @@ Parses israel post response and provides easy way to consume the data
 
 ## Options
 
-_todo_
+### Local Shipment
+| Type     | Subtype         | Options                                                                  | Description |
+|----------|-----------------|--------------------------------------------------------------------------|-------------|
+| LETTER   | regular         |                                                                          |             |
+|          | signed          | regular, with_delivery_verification, with_delivery_and_scan_verification |             |
+|          | overnight       |                                                                          |             |
+|          | signedOvernight |                                                                          |             |
+| POSTCARD | regular         |                                                                          |             |
+| PARCEL   | regular         |                                                                          |             |
+|          | military        |                                                                          |             |
+| LEAFLETS | regular         |                                                                          |             |
+|          | overnight       | toDispatchCenter, byHand                                                 |             |
+
+### Abroad Shipment
+| Type       | Subtype    | Options                                                                | Description |
+|------------|------------|------------------------------------------------------------------------|-------------|
+| LETTER     | regular    | regular, signed                                                        |             |
+|            | overTheSea | regular, signed                                                        |             |
+|            | express    |                                                                        |             |
+| POSTCARD   | regular    |                                                                        |             |
+|            | overTheSea |                                                                        |             |
+| SMALL      | regular    | regular, signed                                                        |             |
+| PRINTED    | regular    | regular, signed, directCheck, signedDirectCheck                        |             |
+|            | overTheSea | regular, signed, directCheck, directCheckDiscounted, signedDirectCheck |             |
+| PARCEL     | regular    |                                                                        |             |
+|            | overTheSea |                                                                        |             |
+|            | express    |                                                                        |             |
+| EMS        | express    |                                                                        |             |
+| NEWSLETTER | regular    |                                                                        |             |
+| ECO        | eco        | withFile, withoutFile                                                  |             |
+
+### Bulk Shipment
+| Type           | Subtype   | Options                                                                        | Description |
+|----------------|-----------|--------------------------------------------------------------------------------|-------------|
+| LOCAL_LETTER   | regular   | sorted, sortedToDispatchCenter, unsortedZipped, unsortedZippedToDispatchCenter |             |
+|                | signed    | withoutBarcode, withBarcodeAndRecipient                                        |             |
+|                | overnight |                                                                                |             |
+| LOCAL_PARCEL   | regular   |                                                                                |             |
+| LOCAL_RESPONSE | regular   |                                                                                |             |
+| ABROAD         | regular   |                                                                                |             |
