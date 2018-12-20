@@ -1,14 +1,8 @@
 const ResponseParser = require('./response-parser').ResponseParser;
-let XMLHttpRequest = null;
 
 // load correct XMLHttpRequest module according to the environment
-if (process.browser) {
-    // we are running in browserify / webpack environment. (dont use fs, child_process, etc..)
-    XMLHttpRequest = require('xhr');
-} else { 
-    // we are running in node environment
-    XMLHttpRequest = module.require('xmlhttprequest').XMLHttpRequest;
-}
+const XMLHttpRequest = require('./dynamic/xhr-node').XMLHttpRequest;
+const environment = require('./dynamic/xhr-node').env;
 
 
 /**
@@ -50,7 +44,7 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     
     // send request and return a promise
     return new Promise((accept, reject) => {
-        if (process.browser) {
+        if (environment == "browser") {
             // we are running in browserify / webpack environment
             let useXDR = typeof XDomainRequest != "undefined" ? true : false;
 
@@ -112,7 +106,7 @@ function generateServiceOption(destination, serviceSubtype, option) {
 function createCORSRequest(method, url) {
     let request = null;
 
-    if (!process.browser) {
+    if (environment == "node") {
         request = new XMLHttpRequest();
 
         if ("withCredentials" in request) {
