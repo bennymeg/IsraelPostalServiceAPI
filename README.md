@@ -1,9 +1,10 @@
 # IsraelPostalServiceAPI
 An API for Israel postal service - query shipment price easily.
+Supports both Node and browser application bases on browserify / webpack (including Angular).
 
 [![licence](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/israel-postal-service-api.svg)](https://www.npmjs.com/package/israel-postal-service-api)
-[![github version](https://img.shields.io/github/package-json/v/badges/shields.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI)
+<!-- [![github version](https://img.shields.io/github/package-json/v/badges/shields.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI) -->
 <!-- ![GitHub repository size in bytes](https://img.shields.io/github/languages/code-size/badges/shields.svg) -->
 
 
@@ -14,12 +15,6 @@ npm install --save israel-postal-service-api
 ## Usage
 
 ### Import library:
-```javascript
-const Options = require('israel-postal-service-api').Options;
-const IPS = require('israel-postal-service-api').IPS;
-```
-_- or -_
-
 ```javascript
 import { IPS, Options } from 'israel-postal-service-api';
 ```
@@ -37,32 +32,16 @@ let ips = new IPS();
 ```
 
 ### Calculate Shipping Rate:
-#### _Option 1: with promises_
+
 ```javascript
 // calculate package shipping rate asynchronously
 ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option).then((response) => {
-    console.log(response.getTotalPrice());  // see {@class ResponseParser} API to discover all the available data
+    // see {@class ResponseParser} API to discover all the available data (or use ts typings)
+    console.log(response.getTotalPrice()); 
 }).catch((error) => {
     console.error('Error:', error);
 });
 ```
-
-#### _Option 2: with async await_
-```javascript
-// calculate package shipping rate asynchronously
-calculatePrice = async () => {
-    try {
-        const response = await ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option);
-        console.log(response.getTotalPrice());
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-// invoke function
-calculatePrice();
-```
-
 
 ## Documentation ##  
 - 👨🏼‍💻 [API](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/API.md),  
