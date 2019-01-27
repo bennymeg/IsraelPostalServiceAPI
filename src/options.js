@@ -5,7 +5,7 @@
 
 const LocalMailOptions = {
     LETTER: { shipmentType: "מכתב", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null },
-                                                        signed: { name: "רשום", options: { regular: "ללא אישור מסירה", with_delivery_verification: "עם אישור מסירה", with_delivery_and_scan_verification: "עם אישור מסירה וסריקה" } },
+                                                        signed: { name: "רשום", options: { regular: "ללא אישור מסירה", withDeliveryVerification: "עם אישור מסירה", withDeliveryAndScanVerification: "עם אישור מסירה וסריקה" } },
                                                         overnight: { name: "דואר 24", options: null },
                                                         signedOvernight: { name: "רשום מהיר", options: null }} },
     POSTCARD: { shipmentType: "גלויה", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null }} },
@@ -13,6 +13,14 @@ const LocalMailOptions = {
                                                          military: { name: "למען של דואר צבאי", options: null }} },
     LEAFLETS: { shipmentType: "עלונים", shipmentSubtypes: { regular: { name: "חלוקת עלונים", options: null },
                                                             overnight: { name: "עלון 24", options: { toDispatchCenter: "חלוקה למרכזי חלוקה", byHand: "חלוקה רגלית" } }} }
+};
+
+const LocalBulkMailOptions = {
+    LETTER: { shipmentType: "מכתב", shipmentSubtypes: { regular: { name: "משלוח כמותי רגיל", options: { sorted: "ממויין", sortedToDispatchCenter: "ממויין - למרכזי חלוקה", unsortedZipped: "ממוקד לא ממויין", unsortedZippedToDispatchCenter: "ממוקד לא ממויין - למרכזי חלוקה" } },
+                                                              signed: { name: "משלוח כמותי רשום", options: { withoutBarcode: "", withBarcodeAndRecipient: "עם ברקוד ופרטי נמען" } },
+                                                              overnight: { name: "דואר 24", options: null }} },
+    PARCEL: { shipmentType: "חבילה", shipmentSubtypes: { regular: { name: "מסניף לסניף", options: null }} },
+    RESPONSE: { shipmentType: "מסירת מכתבי תגוביינא", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null }} }
 };
 
 const AbroadMailOptions = {
@@ -29,18 +37,24 @@ const AbroadMailOptions = {
                                                           express: { name: "דואר מהיר - EMS", options: null }} },
     EMS: { shipmentType: "EMS", shipmentSubtypes: { express: { name: "דואר מהיר - EMS", options: null }} },
     NEWSLETTER: { shipmentType: "עיתון", shipmentSubtypes: { regular: { name: "דואר אויר", options: null }} },
-    ECO: { shipmentType: "eco post", shipmentSubtypes: { name: "eco post", options: { withFile: "כולל קובץ", withoutFile: "ללא קובץ" }} }
+    ECO: { shipmentType: "eco post", shipmentSubtypes: { eco: { name: "eco post", options: { withFile: "כולל קובץ", withoutFile: "ללא קובץ" } }} }
 };
 
-const BulkMailOptions = {
-    LOCAL_LETTER: { shipmentType: "מכתב", shipmentSubtypes: { regular: { name: "משלוח כמותי רגיל", options: { sorted: "ממויין", sortedToDispatchCenter: "ממויין - למרכזי חלוקה", unsortedZipped: "ממוקד לא ממויין", unsortedZippedToDispatchCenter: "ממוקד לא ממויין - למרכזי חלוקה" } },
-                                                              signed: { name: "משלוח כמותי רשום", options: { withoutBarcode: "", withBarcodeAndRecipient: "עם ברקוד ופרטי נמען" } },
-                                                              overnight: { name: "דואר 24", options: null }} },
-    LOCAL_PARCEL: { shipmentType: "חבילה", shipmentSubtypes: { regular: { name: "מסניף לסניף", options: null }} },
-    LOCAL_RESPONSE: { shipmentType: "מסירת מכתבי תגוביינא", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null }} },
-    ABROAD: { shipmentType: "דבר דואר לחו\"ל", shipmentSubtypes: { regular: { name: "דואר אויר", options: null }} }
+const AbroadBulkMailOptions = {
+    PARCEL: { shipmentType: "דבר דואר לחו\"ל", shipmentSubtypes: { regular: { name: "דואר אויר", options: null }} }
+};
+
+// TODO: check all cases in options
+// TODO: maybe this may cause confusion?
+const UniqueShipmentTypes = {
+    ALL: "",
+    PARCEL: "חבילה",        // "parcel"
+    EMS: "EMS",             // "ems"
+    ECONOMIC: "eco post"    // "eco"
 };
 
 module.exports.LocalMailOptions = LocalMailOptions;
+module.exports.LocalBulkMailOptions = LocalBulkMailOptions;
 module.exports.AbroadMailOptions = AbroadMailOptions;
-module.exports.BulkMailOptions = BulkMailOptions;
+module.exports.AbroadBulkMailOptions = AbroadBulkMailOptions;
+module.exports.UniqueShipmentTypes = UniqueShipmentTypes;

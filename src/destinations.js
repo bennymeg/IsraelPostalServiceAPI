@@ -1,3 +1,5 @@
+const eShipmentTypes = require('./options').UniqueShipmentTypes;
+
 /**
  * Loads and retrieves destination data
  * @author Benny Megidish
@@ -15,7 +17,7 @@ class Destinations {
             let argument = arguments[i];
             
             if (typeof argument === 'string' || argument instanceof String) {
-                if (Object.values(eShipmentType).includes(argument)) {
+                if (Object.values(eShipmentTypes).includes(argument)) {
                     this.loadDestinationMap(argument);
                 }
             }
@@ -144,13 +146,5 @@ class Destinations {
         return isLoaded;
     }
 }
-
-// TODO: check all cases in options
-const eShipmentType = {
-    ALL: "",
-    PARCEL: "חבילה",        // "parcel"
-    EMS: "EMS",             // "ems"
-    ECONOMIC: "eco post"    // "eco"
-};
 
 module.exports.Destinations = Destinations;

@@ -1,4 +1,4 @@
-# IsraelPostalServiceAPI
+# Israel Postal Service API
 An API for Israel postal service - query shipment price easily.
 Supports both Node and browser application bases on browserify / webpack (including Angular).
 

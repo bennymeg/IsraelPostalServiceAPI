@@ -15,7 +15,7 @@ Exposes Israel postal service API
 
 <a name="IPS+calculateAbroadShippingRate"></a>
 
-### ipS.calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+### IPS.calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
 calculate shipping rate for abroad shipments
 
 **Kind**: instance method of [<code>IPS</code>](#IPS)
@@ -32,7 +32,7 @@ calculate shipping rate for abroad shipments
 
 <a name="IPS+calculateLocalShippingRate"></a>
 
-### ipS.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+### IPS.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
 calculate shipping rate for local shipments (in Israel)
 
 **Kind**: instance method of [<code>IPS</code>](#IPS)
@@ -48,7 +48,7 @@ calculate shipping rate for local shipments (in Israel)
 
 <a name="IPS+calculateBulkShippingRate"></a>
 
-### ipS.calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+### IPS.calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
 calculate bulk shipping rate for abroad and local bulk shipments
 
 **Kind**: instance method of [<code>IPS</code>](#IPS)
@@ -63,8 +63,17 @@ calculate bulk shipping rate for abroad and local bulk shipments
 | serviceOption | <code>string</code> | <code>null</code> | additional service options (nullable) |
 | quantity | <code>integer</code> | <code>1</code> | amount of packages |
 
+<a name="IPS+getAllDestination"></a>
 
-<a name="ResponseParser"></a>
+### IPS.getAllDestination(shipmentType) ⇒ <code>string[]</code>
+return all the available destination for the shipment type
+
+**Kind**: instance method of [<code>IPS</code>](#IPS)
+**Returns**: <code>string[]</code> - array that contains all the available destination for the shipment type
+
+| Param | Type | Description |
+| --- | --- | --- |
+| shipmentType | <code>string</code> | type of shipment as defined in the {@class Options} class |
 
 ## ResponseParser
 Handles Israel postal service response
@@ -125,17 +134,26 @@ Parses israel post response and provides easy way to consume the data
 ## Options
 
 ### Local Shipment
-| Type     | Subtype         | Options                                                                  | Description |
-|----------|-----------------|--------------------------------------------------------------------------|-------------|
-| LETTER   | regular         |                                                                          |             |
-|          | signed          | regular, with_delivery_verification, with_delivery_and_scan_verification |             |
-|          | overnight       |                                                                          |             |
-|          | signedOvernight |                                                                          |             |
-| POSTCARD | regular         |                                                                          |             |
-| PARCEL   | regular         |                                                                          |             |
-|          | military        |                                                                          |             |
-| LEAFLETS | regular         |                                                                          |             |
-|          | overnight       | toDispatchCenter, byHand                                                 |             |
+| Type     | Subtype         | Options                                                            | Description |
+|----------|-----------------|--------------------------------------------------------------------|-------------|
+| LETTER   | regular         |                                                                    |             |
+|          | signed          | regular, withDeliveryVerification, withDeliveryAndScanVerification |             |
+|          | overnight       |                                                                    |             |
+|          | signedOvernight |                                                                    |             |
+| POSTCARD | regular         |                                                                    |             |
+| PARCEL   | regular         |                                                                    |             |
+|          | military        |                                                                    |             |
+| LEAFLETS | regular         |                                                                    |             |
+|          | overnight       | toDispatchCenter, byHand                                           |             |
+
+### Local bulk Shipment
+| Type     | Subtype   | Options                                                                        | Description |
+|----------|-----------|--------------------------------------------------------------------------------|-------------|
+| LETTER   | regular   | sorted, sortedToDispatchCenter, unsortedZipped, unsortedZippedToDispatchCenter |             |
+|          | signed    | withoutBarcode, withBarcodeAndRecipient                                        |             |
+|          | overnight |                                                                                |             |
+| PARCEL   | regular   |                                                                                |             |
+| RESPONSE | regular   |                                                                                |             |
 
 ### Abroad Shipment
 | Type       | Subtype    | Options                                                                | Description |
@@ -155,12 +173,7 @@ Parses israel post response and provides easy way to consume the data
 | NEWSLETTER | regular    |                                                                        |             |
 | ECO        | eco        | withFile, withoutFile                                                  |             |
 
-### Bulk Shipment
-| Type           | Subtype   | Options                                                                        | Description |
-|----------------|-----------|--------------------------------------------------------------------------------|-------------|
-| LOCAL_LETTER   | regular   | sorted, sortedToDispatchCenter, unsortedZipped, unsortedZippedToDispatchCenter |             |
-|                | signed    | withoutBarcode, withBarcodeAndRecipient                                        |             |
-|                | overnight |                                                                                |             |
-| LOCAL_PARCEL   | regular   |                                                                                |             |
-| LOCAL_RESPONSE | regular   |                                                                                |             |
-| ABROAD         | regular   |                                                                                |             |
+### Abroad bulk Shipment
+| Type           | Subtype   | Options   | Description |
+|----------------|-----------|-----------|-------------|
+| PARCEL         | regular   |           |             |
