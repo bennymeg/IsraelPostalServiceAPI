@@ -1,6 +1,14 @@
 # Change Log
 
 <a name=""></a>
+## [2.0.0](https://github.com/electron-userland/electron-builder/compare/v1.0.0...v2.0.0) (2019-01-26)
+
+### Features
+* added support for browserify / webpack without loading unwanted modules
+* works properly on angular project
+* new options structure
+
+<a name=""></a>
 ## [1.3.0](https://github.com/electron-userland/electron-builder/compare/v1.1.3...v1.3.0) (2018-11-16)
 
 ### Features
