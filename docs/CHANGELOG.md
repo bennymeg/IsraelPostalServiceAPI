@@ -1,7 +1,7 @@
 # Change Log
 
 <a name=""></a>
-## [2.0.0](https://github.com/electron-userland/electron-builder/compare/v1.0.0...v2.0.0) (2019-01-26)
+## [2.0.0](https://github.com/bennymeg/IsraelPostalServiceAPI/compare/v1.0.0...v2.0.0) (2019-01-26)
 
 ### Features
 * added support for browserify / webpack without loading unwanted modules
@@ -9,7 +9,7 @@
 * new options structure
 
 <a name=""></a>
-## [1.3.0](https://github.com/electron-userland/electron-builder/compare/v1.1.3...v1.3.0) (2018-11-16)
+## [1.3.0](https://github.com/bennymeg/IsraelPostalServiceAPI/compare/v1.1.3...v1.3.0) (2018-11-16)
 
 ### Features
 * added dynamic module loading according to the environment (browser / node)
@@ -18,7 +18,7 @@
 * package size decreased
 
 <a name=""></a>
-## [1.1.3](https://github.com/electron-userland/electron-builder/compare/v1.0.0...v1.1.3) (2018-11-16)
+## [1.1.3](https://github.com/bennymeg/IsraelPostalServiceAPI/compare/v1.0.0...v1.1.3) (2018-11-16)
 
 ### Features
 * added support for browserify / webpack
@@ -28,7 +28,7 @@
 * fix mapping BOM encoding error
 
 <a name=""></a>
-# [1.0.0](https://github.com/electron-userland/electron-builder/compare/v0.7.2...v1.0.0) (2018-10-18)
+# [1.0.0](https://github.com/bennymeg/IsraelPostalServiceAPI/compare/v0.7.2...v1.0.0) (2018-10-18)
 
 ### Initial stable release
 _it's all begin from here..._
