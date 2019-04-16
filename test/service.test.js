@@ -28,8 +28,8 @@ describe('Service', () => {
     });
 
     it('should calculate bulk shipping price', () => {
-        let bulkServiceType = options.BulkMailOptions.LOCAL_LETTER.shipmentType;
-        let bulkServiceSubtype = options.BulkMailOptions.LOCAL_LETTER.shipmentSubtypes.regular;
+        let bulkServiceType = options.LocalBulkMailOptions.LETTER.shipmentType;
+        let bulkServiceSubtype = options.LocalBulkMailOptions.LETTER.shipmentSubtypes.regular;
         
         ips.calculateAbroadShippingRate("Spain", 10, bulkServiceType, bulkServiceSubtype).then((result) => {
             assert.isTrue(result.getTotalPrice() > 0);
