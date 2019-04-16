@@ -2,7 +2,7 @@
 An API for Israel postal service - query shipment price easily.
 Supports both Node and browser application bases on browserify / webpack (including Angular).
 
-[![licence](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
+[![licence](https://img.shields.io/github/license/bennymeg/IsraelPostalServiceAPI.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/israel-postal-service-api.svg)](https://www.npmjs.com/package/israel-postal-service-api)
 [![Dependencies status](https://david-dm.org/bennymeg/IsraelPostalServiceAPI/status.svg)](https://david-dm.org/bennymeg/IsraelPostalServiceAPI)
 <!-- [![github version](https://img.shields.io/github/package-json/v/badges/shields.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI) -->
