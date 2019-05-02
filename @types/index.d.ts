@@ -1,5 +1,6 @@
 import { ResponseParser } from './src/response-parser';
-export { ResponseParser }
+import { Options } from './src/options';
+export { ResponseParser, Options }
 
 /**
  * @author Benny Megidish
