@@ -10,7 +10,14 @@ class ResponseParser {
      */
     constructor(response) {
         this.response = JSON.parse(response);
-        this.prices = this.response.prices[0];
+        this.prices = this.response.prices ? this.response.prices[0] : undefined;
+    }
+
+    /**
+     * @returns {string} response status message
+     */
+    getStatus() {
+        return `${this.response.status > 0 ? 'הושלם.' : 'נכשל: '}${this.response.statusDesc}`;
     }
 
     /**

@@ -88,6 +88,7 @@ Handles Israel postal service response
     * [.getTotalPrice()](#ResponseParser+getTotalPrice) ⇒ <code>number</code>
     * [.hasComments()](#ResponseParser+hasComments) ⇒ <code>boolean</code>
     * [.getComments()](#ResponseParser+getComments) ⇒ <code>array.&lt;string&gt;</code>
+    * [.getStatus()](#ResponseParser+getStatus) ⇒ <code>string</code>
     * [.getRawData()](#ResponseParser+getRawData) ⇒ <code>string</code>
 
 <a name="new_ResponseParser_new"></a>
@@ -126,6 +127,10 @@ Parses israel post response and provides easy way to consume the data
 **Kind**: instance method of [<code>ResponseParser</code>](#ResponseParser)
 **Returns**: <code>array.&lt;string&gt;</code> - array of comments about the method if available
 <a name="ResponseParser+getRawData"></a>
+
+### responseParser.getStatus() ⇒ <code>string</code>
+**Kind**: instance method of [<code>ResponseParser</code>](#ResponseParser)
+**Returns**: <code>string</code> - response status
 
 ### responseParser.getRawData() ⇒ <code>string</code>
 **Kind**: instance method of [<code>ResponseParser</code>](#ResponseParser)

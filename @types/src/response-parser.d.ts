@@ -6,6 +6,11 @@ export declare class ResponseParser {
     constructor(response: string);
 
     /**
+     * @returns {string} response status message
+     */
+    getStatus(): string
+
+    /**
      * @returns {string} price group of the shipment
      */
     getPriceGroup(): string
