@@ -12,6 +12,7 @@ Exposes Israel postal service API
     * [.calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateAbroadShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
     * [.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateLocalShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
     * [.calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateBulkShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+    * [.getAllDestination(shipmentType)](#IPS+getAllDestination(shipmentType)) ⇒ <code>string[]</code>
 
 <a name="IPS+calculateAbroadShippingRate"></a>
 
