@@ -183,3 +183,7 @@ Parses israel post response and provides easy way to consume the data
 | Type           | Subtype   | Options   | Description |
 |----------------|-----------|-----------|-------------|
 | PARCEL         | regular   |           | חבילה      |
+
+## Useful links
+* [Postal Service Definitions](https://www.israelpost.co.il/postdictionary.nsf/ShowDefinitions?OpenForm)
+* [Postal Service Online Shipment Calculator](https://www.israelpost.co.il/npostcalc.nsf/calculator2?OpenForm)
