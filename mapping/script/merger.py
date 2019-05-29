@@ -3,7 +3,7 @@ import codecs
 import json
 
 """
-This script combines all possible countrys destination into json files
+This script combines all possible country destinations into json files
 @author Benny Megidish
 """
 
@@ -30,7 +30,7 @@ def createEnCountryDict(filename):
     return en_country_dict
 
 def merge(mappingSourceFilename):
-    ''' iterates over evety csv file int the input dirctory and generate an English dictionary for each file '''
+    ''' iterates over every csv file int the input directory and generate an English dictionary for each file '''
 
     he_directory_path = getHeMappingDirectory()
     he_directory = os.fsencode(he_directory_path)
