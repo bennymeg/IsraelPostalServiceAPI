@@ -142,44 +142,44 @@ Parses israel post response and provides easy way to consume the data
 ### Local Shipment
 | Type     | Subtype         | Options                                                            | Description |
 |----------|-----------------|--------------------------------------------------------------------|-------------|
-| LETTER   | regular         |                                                                    |             |
-|          | signed          | regular, withDeliveryVerification, withDeliveryAndScanVerification |             |
-|          | overnight       |                                                                    |             |
-|          | signedOvernight |                                                                    |             |
-| POSTCARD | regular         |                                                                    |             |
-| PARCEL   | regular         |                                                                    |             |
-|          | military        |                                                                    |             |
-| LEAFLETS | regular         |                                                                    |             |
-|          | overnight       | toDispatchCenter, byHand                                           |             |
+| LETTER   | regular         |                                                                    | מכתב         |
+|          | signed          | regular, withDeliveryVerification, withDeliveryAndScanVerification | מכתב רשום    |
+|          | overnight       |                                                                    | דואר 24      |
+|          | signedOvernight |                                                                    | דואר 24 רשום |
+| POSTCARD | regular         |                                                                    | גלויה        |
+| PARCEL   | regular         |                                                                    | חבילה        |
+|          | military        |                                                                    | חבילה למען צבאי |
+| LEAFLETS | regular         |                                                                    | עלון         |
+|          | overnight       | toDispatchCenter, byHand                                           | עלון 24      |
 
 ### Local bulk Shipment
 | Type     | Subtype   | Options                                                                        | Description |
 |----------|-----------|--------------------------------------------------------------------------------|-------------|
-| LETTER   | regular   | sorted, sortedToDispatchCenter, unsortedZipped, unsortedZippedToDispatchCenter |             |
-|          | signed    | withoutBarcode, withBarcodeAndRecipient                                        |             |
-|          | overnight |                                                                                |             |
-| PARCEL   | regular   |                                                                                |             |
-| RESPONSE | regular   |                                                                                |             |
+| LETTER   | regular   | sorted, sortedToDispatchCenter, unsortedZipped, unsortedZippedToDispatchCenter | מכתב       |
+|          | signed    | withoutBarcode, withBarcodeAndRecipient                                        | מכתב רשום  |
+|          | overnight |                                                                                | דואר 24    |
+| PARCEL   | regular   |                                                                                | חבילה      |
+| RESPONSE | regular   |                                                                                | תגוביינא   |
 
 ### Abroad Shipment
 | Type       | Subtype    | Options                                                                | Description |
 |------------|------------|------------------------------------------------------------------------|-------------|
-| LETTER     | regular    | regular, signed                                                        |             |
-|            | overTheSea | regular, signed                                                        |             |
-|            | express    |                                                                        |             |
-| POSTCARD   | regular    |                                                                        |             |
-|            | overTheSea |                                                                        |             |
-| SMALL      | regular    | regular, signed                                                        |             |
-| PRINTED    | regular    | regular, signed, directCheck, signedDirectCheck                        |             |
-|            | overTheSea | regular, signed, directCheck, directCheckDiscounted, signedDirectCheck |             |
-| PARCEL     | regular    |                                                                        |             |
-|            | overTheSea |                                                                        |             |
-|            | express    |                                                                        |             |
-| EMS        | express    |                                                                        |             |
-| NEWSLETTER | regular    |                                                                        |             |
-| ECO        | eco        | withFile, withoutFile                                                  |             |
+| LETTER     | regular    | regular, signed                                                        | מכתב        |
+|            | overTheSea | regular, signed                                                        | מכתב ימי    |
+|            | express    |                                                                        | דואר מהיר   |
+| POSTCARD   | regular    |                                                                        | גלויה       |
+|            | overTheSea |                                                                        | גלויה ימית  |
+| SMALL      | regular    | regular, signed                                                        | צרור קטן    |
+| PRINTED    | regular    | regular, signed, directCheck, signedDirectCheck                        | דבר דפוס    |
+|            | overTheSea | regular, signed, directCheck, directCheckDiscounted, signedDirectCheck | דבר דפוס ימי |
+| PARCEL     | regular    |                                                                        | חבילה       |
+|            | overTheSea |                                                                        | חבילה ימית   |
+|            | express    |                                                                        | חבילה מהירה |
+| EMS        | express    |                                                                        | משלוח מהיר  |
+| NEWSLETTER | regular    |                                                                        | עיתון       |
+| ECO        | eco        | withFile, withoutFile                                                  | משלוח מוזל  |
 
 ### Abroad bulk Shipment
 | Type           | Subtype   | Options   | Description |
 |----------------|-----------|-----------|-------------|
-| PARCEL         | regular   |           |             |
+| PARCEL         | regular   |           | חבילה      |
