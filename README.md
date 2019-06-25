@@ -1,6 +1,6 @@
 # Israel Postal Service API
 An API for Israel postal service - query shipment price easily.
-Supports both Node and browser application bases on browserify / webpack (including Angular).
+Supports both NodeJS and browser environments.
 
 [![licence](https://img.shields.io/github/license/bennymeg/IsraelPostalServiceAPI.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/israel-postal-service-api.svg)](https://www.npmjs.com/package/israel-postal-service-api)
@@ -22,27 +22,30 @@ import { IPS, Options } from 'israel-postal-service-api';
 
 ### Define Package Characteristics:
 ```javascript
-// define package characteristics
+// define package shipment characteristics
 let weightInGrams = 20;
 let serviceType = Options.AbroadMailOptions.LETTER.shipmentType;
 let serviceSubtype = Options.AbroadMailOptions.LETTER.shipmentSubtypes.regular;
 let option = serviceSubtype.options.signed;
 
 // initialize service
-let ips = new IPS();
+let postalService = new IPS();
 ```
 
 ### Calculate Shipping Rate:
 
 ```javascript
 // calculate package shipping rate asynchronously
-ips.calculateAbroadShippingRate("Spain", weightInGrams, serviceType, serviceSubtype, option).then((response) => {
-    // see {@class ResponseParser} API to discover all the available data (or use ts typings)
-    console.log(response.getTotalPrice()); 
-}).catch((error) => {
-    console.error('Error:', error);
-});
+let response = await postalService.calculateAbroadShippingRate(
+    "Spain", weightInGrams, serviceType, serviceSubtype, option);
+
+// see {@class ResponseParser} API to discover the response structure
+console.log(response.getTotalPrice()); 
 ```
+
+## Supported Environments ##
+- 💻 Browser (including browserify / webpack based environments [such as Angular])
+- 🖥  Node.js
 
 ## Documentation ##  
 - 👨🏼‍💻 [API](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/API.md),  
