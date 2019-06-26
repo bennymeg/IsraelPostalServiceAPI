@@ -5,36 +5,38 @@ const assert = require('chai').assert;
 describe('Service', () => {
     let ips = new IPS();
 
-    it('should calculate abroad shipping price', () => {
+    it('should calculate abroad shipping price', async () => {
         let abroadServiceType = options.AbroadMailOptions.SMALL.shipmentType;
         let abroadServiceSubtype = options.AbroadMailOptions.SMALL.shipmentSubtypes.regular;
 
-        ips.calculateAbroadShippingRate("Italy", 10, abroadServiceType, abroadServiceSubtype).then((result) => {
+        return await ips.calculateAbroadShippingRate("Italy", 10, abroadServiceType, abroadServiceSubtype).then((result) => {
             assert.isTrue(result.getTotalPrice() > 0);
-        }).catch(() => {
-            assert.fail();
+        }).catch((error) => {
+            assert.fail(error);
         });
     });
 
-    it('should calculate local shipping price', () => {
+    it('should calculate local shipping price', async () => {
         let localServiceType = options.LocalMailOptions.LETTER.shipmentType;
         let localServiceSubtype = options.LocalMailOptions.LETTER.shipmentSubtypes.regular;
 
-        ips.calculateLocalShippingRate(10, localServiceType, localServiceSubtype).then((result) => {
+        return await ips.calculateLocalShippingRate(10, localServiceType, localServiceSubtype).then((result) => {
             assert.isTrue(result.getTotalPrice() > 0);
-        }).catch(() => {
-            assert.fail();
+        }).catch((error) => {
+            assert.fail(error);
         });
     });
 
-    it('should calculate bulk shipping price', () => {
-        let bulkServiceType = options.LocalBulkMailOptions.LETTER.shipmentType;
-        let bulkServiceSubtype = options.LocalBulkMailOptions.LETTER.shipmentSubtypes.regular;
+    it('should calculate bulk shipping price', async () => {
+        let bulkServiceType = options.AbroadBulkMailOptions.PARCEL.shipmentType;
+        let bulkServiceSubtype = options.AbroadBulkMailOptions.PARCEL.shipmentSubtypes.regular;
         
-        ips.calculateAbroadShippingRate("Spain", 10, bulkServiceType, bulkServiceSubtype).then((result) => {
+        return await ips.calculateBulkShippingRate("Germany", 10, bulkServiceType, bulkServiceSubtype).then((result) => {
+            console.log(result);
+            
             assert.isTrue(result.getTotalPrice() > 0);
-        }).catch(() => {
-            assert.fail();
+        }).catch((error) => {   
+            assert.fail(error);
         });
     });
 });

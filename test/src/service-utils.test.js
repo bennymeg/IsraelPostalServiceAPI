@@ -50,15 +50,16 @@ describe('Service Utilities', () => {
     });
 
     describe('Service Calculation', () => {
-        let abroadServiceType = options.AbroadMailOptions.SMALL.shipmentType + "~משלוח דואר לחו\"ל";
-        let abroadShipmentSubtype = options.AbroadMailOptions.SMALL.shipmentSubtypes.regular;
+        let type = "משלוח דואר לחו\"ל";
+        let abroadServiceType = type + "~" + options.AbroadMailOptions.PARCEL.shipmentType;
+        let abroadShipmentSubtype = options.AbroadMailOptions.PARCEL.shipmentSubtypes.regular;
         let destination = { "id": "83", "name": "גרמניה" };
 
-        it('should calculate shipping price', () => {
-            utils.calculateShippingRate(destination, 10, abroadServiceType, abroadShipmentSubtype, null).then((result) => {
+        it('should calculate shipping price', async () => {
+            return await utils.calculateShippingRate(destination, 10, abroadServiceType, abroadShipmentSubtype, null).then((result) => {                
                 assert.isTrue(result.getTotalPrice() > 0);
-            }).catch(() => {
-                assert.fail();
+            }).catch((error) => {
+                assert.fail(error);
             });
         });
     });
