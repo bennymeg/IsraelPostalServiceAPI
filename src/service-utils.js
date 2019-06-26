@@ -29,9 +29,9 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     let parameters = { 
         lang: language,
         menuChosen: serviceType,
-        serviceoption: serviceOption,   // ignore wired naming, due to bad postal service API
+        serviceoption: serviceOption,   // ignore unconventional naming, due to bad postal service API
         qty: quantity,
-        shipqty: shipmentQuantity,      // ignore wired naming, due to bad postal service API
+        shipqty: shipmentQuantity,      // ignore unconventional naming, due to bad postal service API
         weight: weight,
         cname: destination.name
     };
@@ -44,8 +44,7 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
     
     // send request and return a promise
     return new Promise((accept, reject) => {
-        if (environment == "browser") {
-            // we are running in browserify / webpack environment
+        if (environment != "debug") {
             let useXDR = typeof XDomainRequest != "undefined" ? true : false;
 
             XMLHttpRequest.get(encodedUrlQuery, { useXDR: useXDR }, (error, response) => {
@@ -56,7 +55,7 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
                 }
             });
         } else {
-            // we are running in node environment
+            // we are running in debug environment
             let request = createCORSRequest('GET', encodedUrlQuery);
 
             if (request) {
@@ -110,7 +109,7 @@ function generateServiceOption(destination, serviceSubtype, option) {
 function createCORSRequest(method, url) {
     let request = null;
 
-    if (environment == "node") {
+    if (environment == "debug") {
         request = new XMLHttpRequest();
 
         if ("withCredentials" in request) {

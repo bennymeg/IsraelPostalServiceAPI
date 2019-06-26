@@ -3,7 +3,7 @@
  * @author Benny Megidish
  */
 class ResponseParser {
-    // ignore wired naming, due to bad postal service API
+    // ignore unconventional naming, due to bad postal service API
     /**
      * Parses israel post response and provides easy way to consume the data
      * @param {string} response the response the have been received from the israel-post server
