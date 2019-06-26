@@ -59,15 +59,19 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
             // we are running in node environment
             let request = createCORSRequest('GET', encodedUrlQuery);
 
-            request.onload = () => {
-                accept(new ResponseParser(request.responseText));
-            };
-            
-            request.onerror = () => {
-                reject(request.statusText);
-            };
-            
-            request.send();
+            if (request) {
+                request.onload = () => {
+                    accept(new ResponseParser(request.responseText));
+                };
+                
+                request.onerror = () => {
+                    reject(request.statusText);
+                };
+                
+                request.send();
+            } else {
+                reject('CORS is not supported');
+            }
         }
     });
 }
@@ -119,6 +123,7 @@ function createCORSRequest(method, url) {
         } else {
             // CORS not supported.
             request = null;
+            console.error('CORS request is not supported');
         }
     }
 

@@ -5,22 +5,26 @@ const assert = require('chai').assert;
 describe('Service Utilities', () => {
     describe('CORS', () => {
         it('should return CORS request', () => {
-            let result = utils.createCORSRequest("GET", "www.israelpost.co.il");
+            let result = utils.createCORSRequest("GET", "https://www.israelpost.co.il");
             assert.isNotNull(result);
         });
 
         it('should return CORS response', () => {
-            let xhr = utils.createCORSRequest("GET", "www.israelpost.co.il");
+            let xhr = utils.createCORSRequest("GET", "https://www.israelpost.co.il");
 
-            xhr.onload = () => {
-                assert.isNotNull(xhr.responseText);
-            };
-            
-            xhr.onerror = () => {
+            if (xhr) {
+                xhr.onload = () => {
+                    assert.isNotNull(xhr.responseText);
+                };
+                
+                xhr.onerror = () => {
+                    assert.fail();
+                };
+                
+                xhr.send();
+            } else {
                 assert.fail();
-            };
-            
-            xhr.send();
+            }
         });
     });
 
