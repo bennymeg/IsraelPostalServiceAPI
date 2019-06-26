@@ -1,32 +1,35 @@
+const environment = require('../../src/dynamic/xhr-node').env;
 const utils = require('../../src/service-utils');
 const options = require('../../src/options');
 const assert = require('chai').assert; 
 
 describe('Service Utilities', () => {
-    describe('CORS', () => {
-        it('should return CORS request', () => {
-            let result = utils.createCORSRequest("GET", "https://www.israelpost.co.il");
-            assert.isNotNull(result);
-        });
+    if (environment == "debug") {
+        describe('CORS', () => {
+            it('should return CORS request', () => {
+                let result = utils.createCORSRequest("GET", "https://www.israelpost.co.il");
+                assert.isNotNull(result);
+            });
 
-        it('should return CORS response', () => {
-            let xhr = utils.createCORSRequest("GET", "https://www.israelpost.co.il");
+            it('should return CORS response', () => {
+                let xhr = utils.createCORSRequest("GET", "https://www.israelpost.co.il");
 
-            if (xhr) {
-                xhr.onload = () => {
-                    assert.isNotNull(xhr.responseText);
-                };
-                
-                xhr.onerror = () => {
-                    assert.fail();
-                };
-                
-                xhr.send();
-            } else {
-                assert.fail();
-            }
+                if (xhr) {
+                    xhr.onload = () => {
+                        assert.isNotNull(xhr.responseText);
+                    };
+                    
+                    xhr.onerror = (error) => {
+                        assert.fail(error);
+                    };
+                    
+                    xhr.send();
+                } else {
+                    assert.fail("Could not create CORS request");
+                }
+            });
         });
-    });
+    }
 
     describe('Service Options', () => {
         let abroadServiceSubtype = options.AbroadMailOptions.SMALL.shipmentSubtypes.regular;
