@@ -1,6 +1,6 @@
 {
   "name": "israel-postal-service-api",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "description": "Israel postal office pricing calculator",
   "main": "index.js",
   "browser": {
@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/bennymeg/IsraelPostalServiceAPI",
   "scripts": {
-    "test": "npm run lint && mocha --recursive || true",
+    "test": "npm run lint && mocha --recursive || ECHO.",
     "lint": "jshint --exclude-path=.gitignore ."
   },
   "keywords": [
