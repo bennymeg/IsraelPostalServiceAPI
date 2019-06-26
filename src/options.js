@@ -41,7 +41,7 @@ const AbroadMailOptions = {
 };
 
 const AbroadBulkMailOptions = {
-    PARCEL: { shipmentType: "דבר דואר לחו\"ל", shipmentSubtypes: { regular: { name: "דואר אויר", options: null }} }
+    PARCEL: { shipmentType: "דברי דואר לחו\"ל", shipmentSubtypes: { regular: { name: "דואר אויר", options: null }} }
 };
 
 // TODO: check all cases in options
