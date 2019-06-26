@@ -32,8 +32,6 @@ describe('Service', () => {
         let bulkServiceSubtype = options.AbroadBulkMailOptions.PARCEL.shipmentSubtypes.regular;
         
         return await ips.calculateBulkShippingRate("Germany", 10, bulkServiceType, bulkServiceSubtype).then((result) => {
-            console.log(result);
-            
             assert.isTrue(result.getTotalPrice() > 0);
         }).catch((error) => {   
             assert.fail(error);
