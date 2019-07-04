@@ -27,11 +27,22 @@ describe('Service', () => {
         });
     });
 
-    it('should calculate bulk shipping price', async () => {
+    it('should calculate abroad bulk shipping price', async () => {
         let bulkServiceType = options.AbroadBulkMailOptions.PARCEL.shipmentType;
         let bulkServiceSubtype = options.AbroadBulkMailOptions.PARCEL.shipmentSubtypes.regular;
         
-        return await ips.calculateBulkShippingRate("Germany", 10, bulkServiceType, bulkServiceSubtype).then((result) => {
+        return await ips.calculateAbroadBulkShippingRate("Germany", 10, bulkServiceType, bulkServiceSubtype).then((result) => {
+            assert.isTrue(result.getTotalPrice() > 0);
+        }).catch((error) => {   
+            assert.fail(error);
+        });
+    });
+
+    it('should calculate local bulk shipping price', async () => {
+        let bulkServiceType = options.LocalBulkMailOptions.PARCEL.shipmentType;
+        let bulkServiceSubtype = options.LocalBulkMailOptions.PARCEL.shipmentSubtypes.regular;
+        
+        return await ips.calculateLocalBulkShippingRate(10, bulkServiceType, bulkServiceSubtype).then((result) => {
             assert.isTrue(result.getTotalPrice() > 0);
         }).catch((error) => {   
             assert.fail(error);
