@@ -11,7 +11,8 @@ Exposes Israel postal service API
 * [IPS](#IPS)
     * [.calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateAbroadShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
     * [.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateLocalShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
-    * [.calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateBulkShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+    * [.calculateAbroadBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateAbroadBulkShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+    * [.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateLocalBulkShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
     * [.getAllDestination(shipmentType)](#IPS+getAllDestination(shipmentType)) ⇒ <code>string[]</code>
 
 <a name="IPS+calculateAbroadShippingRate"></a>
@@ -47,10 +48,10 @@ calculate shipping rate for local shipments (in Israel)
 | serviceOption | <code>string</code> | <code>null</code> | additional service options (nullable) |
 | quantity | <code>integer</code> | <code>1</code> | amount of packages |
 
-<a name="IPS+calculateBulkShippingRate"></a>
+<a name="IPS+calculateAbroadBulkShippingRate"></a>
 
-### IPS.calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
-calculate bulk shipping rate for abroad and local bulk shipments
+### IPS.calculateAbroadBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+calculate abroad bulk shipping rate for abroad and local bulk shipments
 
 **Kind**: instance method of [<code>IPS</code>](#IPS)
 **Returns**: <code>Promise.&lt;ResponseParser&gt;</code> - a promise with the parsed shipment data (see {@class ResponseParser})
@@ -58,6 +59,22 @@ calculate bulk shipping rate for abroad and local bulk shipments
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | destination | <code>string</code> |  | Camel-Case destination name (in english) or "" for local shipments |
+| weight | <code>float</code> |  | weight of the shipment in grams |
+| shipmentType | <code>string</code> |  | type of shipment (as defines in {@class Options}) |
+| shipmentSubtype | <code>object</code> |  | subtype of shipment (as define in the shipmentType {@class Options}) |
+| serviceOption | <code>string</code> | <code>null</code> | additional service options (nullable) |
+| quantity | <code>integer</code> | <code>1</code> | amount of packages |
+
+<a name="IPS+calculateLocalBulkShippingRate"></a>
+
+### IPS.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
+calculate local bulk shipping rate for abroad and local bulk shipments
+
+**Kind**: instance method of [<code>IPS</code>](#IPS)
+**Returns**: <code>Promise.&lt;ResponseParser&gt;</code> - a promise with the parsed shipment data (see {@class ResponseParser})
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
 | weight | <code>float</code> |  | weight of the shipment in grams |
 | shipmentType | <code>string</code> |  | type of shipment (as defines in {@class Options}) |
 | shipmentSubtype | <code>object</code> |  | subtype of shipment (as define in the shipmentType {@class Options}) |
@@ -153,13 +170,14 @@ Parses israel post response and provides easy way to consume the data
 |          | overnight       | toDispatchCenter, byHand                                           | עלון 24      |
 
 ### Local bulk Shipment
-| Type     | Subtype   | Options                                                                        | Description |
-|----------|-----------|--------------------------------------------------------------------------------|-------------|
-| LETTER   | regular   | sorted, sortedToDispatchCenter, unsortedZipped, unsortedZippedToDispatchCenter | מכתב       |
-|          | signed    | withoutBarcode, withBarcodeAndRecipient                                        | מכתב רשום  |
-|          | overnight |                                                                                | דואר 24    |
-| PARCEL   | regular   |                                                                                | חבילה      |
-| RESPONSE | regular   |                                                                                | תגוביינא   |
+| Type     | Subtype        | Options                                                                        | Description |
+|----------|----------------|--------------------------------------------------------------------------------|-------------|
+| LETTER   | regular        | sorted, sortedToDispatchCenter, unsortedZipped, unsortedZippedToDispatchCenter | מכתב       |
+|          | signed         | withoutBarcode, withBarcodeAndRecipient                                        | מכתב רשום  |
+|          | overnight      |                                                                                | דואר 24    |
+| PARCEL   | regular        |                                                                                | חבילה      |
+|          | combinedDirect |                                                                                | חבילות למען יחיד |
+| RESPONSE | regular        |                                                                                | תגוביינא   |
 
 ### Abroad Shipment
 | Type       | Subtype    | Options                                                                | Description |
