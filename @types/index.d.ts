@@ -46,7 +46,7 @@ export declare class IPS {
         shipmentSubtype: any, serviceOption?: string, quantity?: number): Promise<ResponseParser> 
 
     /**
-     * calculate local bulk shipping rate for abroad and local bulk shipments
+     * calculate local bulk shipping rate for abroad and local bulk shipments (in Israel)
      * @param {float} weight weight of the shipment in grams
      * @param {string} shipmentType type of shipment (as defines in {@class Options})
      * @param {object} shipmentSubtype subtype of shipment (as define in the shipmentType {@class Options})

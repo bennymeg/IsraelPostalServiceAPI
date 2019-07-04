@@ -48,7 +48,7 @@ class IPS {
     }
 
     /**
-     * calculate bulk shipping rate for abroad and local bulk shipments
+     * calculate bulk shipping rate for abroad bulk shipments
      * @param {string} destination Camel-Case destination name (in english) or "" for local shipments
      * @param {float} weight weight of the shipment in grams
      * @param {string} shipmentType type of shipment (as defines in {@class Options})
@@ -66,7 +66,7 @@ class IPS {
     }
 
     /**
-     * calculate bulk shipping rate for abroad and local bulk shipments
+     * calculate bulk shipping rate for local bulk shipments (in Israel)
      * @param {float} weight weight of the shipment in grams
      * @param {string} shipmentType type of shipment (as defines in {@class Options})
      * @param {object} shipmentSubtype subtype of shipment (as define in the shipmentType {@class Options})

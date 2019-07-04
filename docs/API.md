@@ -51,7 +51,7 @@ calculate shipping rate for local shipments (in Israel)
 <a name="IPS+calculateAbroadBulkShippingRate"></a>
 
 ### IPS.calculateAbroadBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
-calculate abroad bulk shipping rate for abroad and local bulk shipments
+calculate abroad bulk shipping rate for abroad bulk shipments
 
 **Kind**: instance method of [<code>IPS</code>](#IPS)
 **Returns**: <code>Promise.&lt;ResponseParser&gt;</code> - a promise with the parsed shipment data (see {@class ResponseParser})
@@ -68,7 +68,7 @@ calculate abroad bulk shipping rate for abroad and local bulk shipments
 <a name="IPS+calculateLocalBulkShippingRate"></a>
 
 ### IPS.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>
-calculate local bulk shipping rate for abroad and local bulk shipments
+calculate local bulk shipping rate for local bulk shipments (in Israel)
 
 **Kind**: instance method of [<code>IPS</code>](#IPS)
 **Returns**: <code>Promise.&lt;ResponseParser&gt;</code> - a promise with the parsed shipment data (see {@class ResponseParser})
