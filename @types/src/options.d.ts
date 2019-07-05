@@ -1,8 +1,8 @@
-export class Options {
+export class OptionsType {
     static LocalMailOptions: LocalMailOptionsType;
     static LocalBulkMailOptions: LocalBulkMailOptionsType;
-    static AbroadMailOptions: LocalBulkMailOptionsType;
-    static AbroadBulkMailOptions: AbroadMailOptionsType;
+    static AbroadMailOptions: AbroadMailOptionsType;
+    static AbroadBulkMailOptions: AbroadBulkMailOptionsType;
     static UniqueShipmentTypes: any;
 }
 

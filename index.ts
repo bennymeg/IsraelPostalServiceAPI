@@ -1,6 +1,7 @@
 import { Destinations } from './src/destinations';
 import * as utils from './src/service-utils';
-export const options = require('./src/options');
+import { OptionsType } from './@types/src/options';
+export const Options: OptionsType = require('./src/options');
 
 /**
  * Exposes Israel postal service API
