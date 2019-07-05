@@ -11,7 +11,8 @@
   "scripts": {
     "start": "npm run lint && tsc",
     "test": "npm run start && mocha --require ts-node/register 'test/**/*.ts' --recursive || ECHO.",
-    "lint": "jshint --exclude-path=.gitignore ."
+    "lint": "jshint .",
+    "lint:all": "jshint --exclude-path=.gitignore ."
   },
   "keywords": [
     "Israel",
