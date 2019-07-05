@@ -32,6 +32,7 @@ export class Destinations {
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      */
     loadDestinationMap(shipmentType: string) {
+        // dynamic import: import * as parcel from '../mapping/data/destination-map-parcel.json';
         switch (shipmentType) { 
             case "חבילה":
                 this.parcelDestinationMap = require('../mapping/data/destination-map-parcel.json');

@@ -2,6 +2,7 @@
     "compilerOptions": {
         "outDir": "./dist",
         "allowJs": true,
+        "resolveJsonModule": true,
         "target": "es6"
     },
         "include": [
