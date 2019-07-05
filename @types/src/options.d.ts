@@ -1,25 +1,25 @@
 export class Options {
-    static LocalMailOptions: LocalMailOptions;
-    static LocalBulkMailOptions: LocalBulkMailOptions;
-    static AbroadMailOptions: LocalBulkMailOptions;
-    static AbroadBulkMailOptions: AbroadMailOptions;
+    static LocalMailOptions: LocalMailOptionsType;
+    static LocalBulkMailOptions: LocalBulkMailOptionsType;
+    static AbroadMailOptions: LocalBulkMailOptionsType;
+    static AbroadBulkMailOptions: AbroadMailOptionsType;
     static UniqueShipmentTypes: any;
 }
 
-declare type LocalMailOptions = {
+declare type LocalMailOptionsType = {
     LETTER: Option;
     POSTCARD: Option;
     PARCEL: Option;
     LEAFLETS: Option;
 }
 
-declare type LocalBulkMailOptions = {
+declare type LocalBulkMailOptionsType = {
     LETTER: Option;
     PARCEL: Option;
     RESPONSE: Option;
 }
 
-declare type AbroadMailOptions = {
+declare type AbroadMailOptionsType = {
     LETTER: Option;
     POSTCARD: Option;
     SMALL: Option;
@@ -30,13 +30,13 @@ declare type AbroadMailOptions = {
     ECO: Option;
 }
 
-declare type AbroadBulkMailOptions = {
+declare type AbroadBulkMailOptionsType = {
     PARCEL: Option;
 }
 
 declare type Option = {
     shipmentType: string,
-    shipmentSubtypes: any
+    shipmentSubtypes: ShipmentSubtypes | any           // FIXME
 }
 
 declare type ShipmentSubtypes = {
@@ -47,10 +47,31 @@ declare type ShipmentSubtypes = {
     military?: ShipmentSubtype,
     overTheSea?: ShipmentSubtype,
     express?: ShipmentSubtype,
-    eco?: ShipmentSubtype
+    eco?: ShipmentSubtype,
+    combinedDirect?: ShipmentSubtype
 }
 
 declare type ShipmentSubtype = {
     name: string,
-    options?: any
+    options?: ShipmentSubtypeOption | any               // FIXME
+}
+
+declare type ShipmentSubtypeOption = {
+    regular?: string,
+    signed?: string,
+    withDeliveryVerification?: string, 
+    withDeliveryAndScanVerification?: string, 
+    toDispatchCenter?: string, 
+    byHand?: string,
+    sorted?: string, 
+    sortedToDispatchCenter?: string, 
+    unsortedZipped?: string, 
+    unsortedZippedToDispatchCenter?: string,
+    withoutBarcode?: string, 
+    withBarcodeAndRecipient?: string, 
+    directCheck?: string, 
+    directCheckDiscounted?: string, 
+    signedDirectCheck?: string,
+    withFile?: string, 
+    withoutFile?: string	
 }

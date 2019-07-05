@@ -1,4 +1,4 @@
-const eShipmentTypes = require('./options').UniqueShipmentTypes;
+import { UniqueShipmentTypes as eShipmentTypes } from './options';
 
 export interface Destination {
     id: string,     // number

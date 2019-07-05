@@ -1,11 +1,11 @@
-import { LocalMailOptions, LocalBulkMailOptions, AbroadMailOptions, AbroadBulkMailOptions } from '../@types/src/options'
+import { LocalMailOptionsType, LocalBulkMailOptionsType, AbroadMailOptionsType, AbroadBulkMailOptionsType } from '../@types/src/options'
 
 /**
  * This module contains all the shipping options enumerations
  * @author Benny Megidish
  */
 
-const LocalMailOptions: LocalMailOptions = {
+export const LocalMailOptions: LocalMailOptionsType = {
     LETTER: { shipmentType: "מכתב", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null },
                                                         signed: { name: "רשום", options: { regular: "ללא אישור מסירה", withDeliveryVerification: "עם אישור מסירה", withDeliveryAndScanVerification: "עם אישור מסירה וסריקה" } },
                                                         overnight: { name: "דואר 24", options: null },
@@ -17,7 +17,7 @@ const LocalMailOptions: LocalMailOptions = {
                                                             overnight: { name: "עלון 24", options: { toDispatchCenter: "חלוקה למרכזי חלוקה", byHand: "חלוקה רגלית" } }} }
 };
 
-const LocalBulkMailOptions: LocalBulkMailOptions = {
+export const LocalBulkMailOptions: LocalBulkMailOptionsType = {
     LETTER: { shipmentType: "מכתב", shipmentSubtypes: { regular: { name: "משלוח כמותי רגיל", options: { sorted: "ממויין", sortedToDispatchCenter: "ממויין - למרכזי חלוקה", unsortedZipped: "ממוקד לא ממויין", unsortedZippedToDispatchCenter: "ממוקד לא ממויין - למרכזי חלוקה" } },
                                                               signed: { name: "משלוח כמותי רשום", options: { withoutBarcode: "", withBarcodeAndRecipient: "עם ברקוד ופרטי נמען" } },
                                                               overnight: { name: "דואר 24", options: null }} },
@@ -26,7 +26,7 @@ const LocalBulkMailOptions: LocalBulkMailOptions = {
     RESPONSE: { shipmentType: "מסירת מכתבי תגוביינא", shipmentSubtypes: { regular: { name: "משלוח רגיל", options: null }} }
 };
 
-const AbroadMailOptions: AbroadMailOptions = {
+export const AbroadMailOptions: AbroadMailOptionsType = {
     LETTER: { shipmentType: "מכתב", shipmentSubtypes: { regular: { name: "דואר אויר", options: { regular: "משלוח רגיל", signed: "רשום" } },
                                                         overTheSea: { name: "דואר ים ויבשה", options: { regular: "משלוח רגיל", signed: "רשום" } },
                                                         express: { name: "דואר מהיר - EMS", options: null }} }, 
@@ -43,21 +43,15 @@ const AbroadMailOptions: AbroadMailOptions = {
     ECO: { shipmentType: "eco post", shipmentSubtypes: { eco: { name: "eco post", options: { withFile: "כולל קובץ", withoutFile: "ללא קובץ" } }} }
 };
 
-const AbroadBulkMailOptions: AbroadBulkMailOptions = {
+export const AbroadBulkMailOptions: AbroadBulkMailOptionsType = {
     PARCEL: { shipmentType: "דברי דואר לחו\"ל", shipmentSubtypes: { regular: { name: "דואר אויר", options: null }} }
 };
 
 // TODO: check all cases in options
 // TODO: maybe this may cause confusion?
-const UniqueShipmentTypes = {
+export const UniqueShipmentTypes = {
     ALL: "",
     PARCEL: "חבילה",        // "parcel"
     EMS: "EMS",             // "ems"
     ECONOMIC: "eco post"    // "eco"
 };
-
-module.exports.LocalMailOptions = LocalMailOptions;
-module.exports.LocalBulkMailOptions = LocalBulkMailOptions;
-module.exports.AbroadMailOptions = AbroadMailOptions;
-module.exports.AbroadBulkMailOptions = AbroadBulkMailOptions;
-module.exports.UniqueShipmentTypes = UniqueShipmentTypes;

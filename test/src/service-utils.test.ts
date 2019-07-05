@@ -1,5 +1,5 @@
 const environment = require('../../src/dynamic/xhr-node').environment;
-const options = require('../../src/options');
+import * as options from '../../src/options';
 import * as utils from '../../src/service-utils';
 import { assert } from 'chai';
 

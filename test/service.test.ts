@@ -1,4 +1,4 @@
-const options = require('../src/options');
+import * as options from '../src/options';
 import { IPS } from '../index';
 import { assert } from 'chai';
 

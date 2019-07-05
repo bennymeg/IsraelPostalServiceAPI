@@ -1,5 +1,4 @@
 import * as utils from './src/service-utils';
-import { ResponseParser } from './src/response-parser';
 import { Destinations } from './src/destinations';
 export const options = require('./src/options');
 
@@ -8,7 +7,7 @@ export const options = require('./src/options');
  * @author Benny Megidish
  */
 export class IPS {
-    destinations: any; //todo
+    destinations: Destinations;
 
     constructor() {
         this.destinations = new Destinations();
