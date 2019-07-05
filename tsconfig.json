@@ -7,7 +7,7 @@
         "moduleResolution": "node",
         "target": "es6"
     },
-        "include": [
+    "include": [
         "./index.ts",
         "./src/**/*",
         "@types/src/response.d.ts"
