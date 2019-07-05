@@ -68,17 +68,17 @@ export class Destinations {
 
         switch (shipmentType) { 
             case "חבילה":
-                result = this.parcelDestinationMap[destination];
+                result = this.parcelDestinationMap.get(destination);
                 break;
             case "EMS":
-                result = this.emsDestinationMap[destination];
+                result = this.emsDestinationMap.get(destination);
                 break;
             case "eco post":
-                result = this.economicDestinationMap[destination];
+                result = this.economicDestinationMap.get(destination);
                 break;
             //case "":
             default:
-                result = this.globalDestinationMap[destination];
+                result = this.globalDestinationMap.get(destination);
                 break;
         }
 
@@ -96,17 +96,17 @@ export class Destinations {
                 
         switch (shipmentType) { 
             case "חבילה":
-                result = Object.keys(this.parcelDestinationMap);
+                result = Array.from(this.parcelDestinationMap.keys());
                 break;
             case "EMS":
-                result = Object.keys(this.emsDestinationMap);
+                result = Array.from(this.emsDestinationMap.keys());
                 break;
             case "eco post":
-                result = Object.keys(this.economicDestinationMap);
+                result = Array.from(this.economicDestinationMap.keys());
                 break;
             //case "":
             default:
-                result = Object.keys(this.globalDestinationMap);
+                result = Array.from(this.globalDestinationMap.keys());
                 break;
         }
 
