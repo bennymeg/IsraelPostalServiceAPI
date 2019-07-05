@@ -31,21 +31,27 @@ export class Destinations {
      * loads the current destination mapping in a lazy manner
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      */
-    loadDestinationMap(shipmentType: string) {
-        // dynamic import: import * as parcel from '../mapping/data/destination-map-parcel.json';
+    async loadDestinationMap(shipmentType: string) {
+        let destinationMapping: any;
+
+        // dynamic destinations module import
         switch (shipmentType) { 
             case "חבילה":
-                this.parcelDestinationMap = require('../mapping/data/destination-map-parcel.json');
+                destinationMapping = await import('../mapping/data/destination-map-parcel.json');
+                this.parcelDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
             case "EMS":
-                this.emsDestinationMap = require('../mapping/data/destination-map-ems.json');
+                destinationMapping = await import('../mapping/data/destination-map-ems.json');
+                this.emsDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
             case "eco post":
-                this.economicDestinationMap = require('../mapping/data/destination-map-eco.json');
+                destinationMapping = await import('../mapping/data/destination-map-eco.json');
+                this.economicDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
             //case "":
             default:
-                this.globalDestinationMap = require('../mapping/data/destination-map.json'); 
+                destinationMapping = await import('../mapping/data/destination-map.json');
+                this.globalDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
         }
     }
