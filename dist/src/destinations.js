@@ -1,12 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const options_1 = require("./options");
 /**
@@ -29,29 +21,27 @@ class Destinations {
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      */
     loadDestinationMap(shipmentType) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let destinationMapping;
-            // dynamic destinations module import
-            switch (shipmentType) {
-                case "חבילה":
-                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map-parcel.json'));
-                    this.parcelDestinationMap = new Map(Object.entries(destinationMapping));
-                    break;
-                case "EMS":
-                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map-ems.json'));
-                    this.emsDestinationMap = new Map(Object.entries(destinationMapping));
-                    break;
-                case "eco post":
-                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map-eco.json'));
-                    this.economicDestinationMap = new Map(Object.entries(destinationMapping));
-                    break;
-                //case "":
-                default:
-                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map.json'));
-                    this.globalDestinationMap = new Map(Object.entries(destinationMapping));
-                    break;
-            }
-        });
+        let destinationMapping;
+        // dynamic destinations module import
+        switch (shipmentType) {
+            case "חבילה":
+                destinationMapping = require('../mapping/data/destination-map-parcel.json');
+                this.parcelDestinationMap = new Map(Object.entries(destinationMapping));
+                break;
+            case "EMS":
+                destinationMapping = require('../mapping/data/destination-map-ems.json');
+                this.emsDestinationMap = new Map(Object.entries(destinationMapping));
+                break;
+            case "eco post":
+                destinationMapping = require('../mapping/data/destination-map-eco.json');
+                this.economicDestinationMap = new Map(Object.entries(destinationMapping));
+                break;
+            //case "":
+            default:
+                destinationMapping = require('../mapping/data/destination-map.json');
+                this.globalDestinationMap = new Map(Object.entries(destinationMapping));
+                break;
+        }
     }
     /**
      * return destination object for the hebrew postal service API

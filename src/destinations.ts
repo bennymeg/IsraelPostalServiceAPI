@@ -31,26 +31,26 @@ export class Destinations {
      * loads the current destination mapping in a lazy manner
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      */
-    async loadDestinationMap(shipmentType: string) {
+    loadDestinationMap(shipmentType: string) {
         let destinationMapping: any;
 
         // dynamic destinations module import
         switch (shipmentType) { 
             case "חבילה":
-                destinationMapping = await import('../mapping/data/destination-map-parcel.json');
+                destinationMapping = require('../mapping/data/destination-map-parcel.json');
                 this.parcelDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
             case "EMS":
-                destinationMapping = await import('../mapping/data/destination-map-ems.json');
+                destinationMapping = require('../mapping/data/destination-map-ems.json');
                 this.emsDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
             case "eco post":
-                destinationMapping = await import('../mapping/data/destination-map-eco.json');
+                destinationMapping = require('../mapping/data/destination-map-eco.json');
                 this.economicDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
             //case "":
             default:
-                destinationMapping = await import('../mapping/data/destination-map.json');
+                destinationMapping = require('../mapping/data/destination-map.json');
                 this.globalDestinationMap = new Map<string, Destination>(Object.entries(destinationMapping));
                 break;
         }
