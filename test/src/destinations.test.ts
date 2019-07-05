@@ -26,18 +26,22 @@ describe('Destinations', () => {
         });
 
         it('should retrieve all the keys from loaded mappings', () => {
-            let result = destination.getAllDestination("EMS");
+            let result: Array<string> = destination.getAllDestination("EMS");
 
             assert.exists(result);
             assert.isAbove(Object.keys(result).length, 200);
         });
 
         it('should verify destination loaded or load them if not', () => {
-            let result1 = destination._verifyDestinationMapLoaded("eco post");
-            let result2 = destination._verifyDestinationMapLoaded("eco post");
+            let result1: boolean = destination._verifyDestinationMapLoaded("eco post");
+            let result2: boolean = destination._verifyDestinationMapLoaded("eco post");
 
             assert.isFalse(result1);
             assert.isTrue(result2);
         });
     });
 });
+
+function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

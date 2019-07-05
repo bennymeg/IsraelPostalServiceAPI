@@ -13,6 +13,7 @@ export class IPS {
         this.destinations = new Destinations();
     }
 
+    //todo: typing
     /**
      * calculate shipping rate for regular (non bulk) shipments
      * @param {string} destination destination country name (in CamelCase English)
@@ -126,9 +127,9 @@ export class IPS {
     /**
      * return all the available destination for the shipment type
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
-     * @returns {string[]} array that contains all the available destination for the shipment type
+     * @returns {Array<string>} array that contains all the available destination for the shipment type
      */
-    getAllDestination(shipmentType) {
+    getAllDestination(shipmentType): Array<string> {
         return this.destinations.getAllDestination(shipmentType);
     }
 }
