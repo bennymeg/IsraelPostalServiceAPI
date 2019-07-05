@@ -3,6 +3,8 @@
         "outDir": "./dist",
         "allowJs": true,
         "resolveJsonModule": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
         "target": "es6"
     },
     "include": [
