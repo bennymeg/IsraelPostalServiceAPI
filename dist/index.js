@@ -1,13 +1,15 @@
-import * as utils from './src/service-utils';
-import { Destinations } from './src/destinations';
-export const options = require('./src/options');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const destinations_1 = require("./src/destinations");
+const utils = require("./src/service-utils");
+exports.options = require('./src/options');
 /**
  * Exposes Israel postal service API
  * @author Benny Megidish
  */
-export class IPS {
+class IPS {
     constructor() {
-        this.destinations = new Destinations();
+        this.destinations = new destinations_1.Destinations();
     }
     /**
      * calculate shipping rate for regular (non bulk) shipments
@@ -116,3 +118,4 @@ export class IPS {
         return this.destinations.getAllDestination(shipmentType);
     }
 }
+exports.IPS = IPS;

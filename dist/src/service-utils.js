@@ -1,4 +1,6 @@
-import { ResponseParser } from './response-parser';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const response_parser_1 = require("./response-parser");
 // load correct XMLHttpRequest module according to the environment
 const request = require('./dynamic/xhr-node').request;
 const environment = require('./dynamic/xhr-node').environment;
@@ -19,7 +21,7 @@ let XDomainRequest;
  * @param {string} shipmentQuantity shipment quantity
  * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (see {@class ResponseParser})
  */
-export function calculateShippingRate(destination, weight, serviceType, serviceSubtype, option, quantity = 1, language = "HE", shipmentQuantity = "0") {
+function calculateShippingRate(destination, weight, serviceType, serviceSubtype, option, quantity = 1, language = "HE", shipmentQuantity = "0") {
     let serviceOption = generateServiceOption(destination, serviceSubtype, option);
     // request parameters
     let parameters = {
@@ -45,7 +47,7 @@ export function calculateShippingRate(destination, weight, serviceType, serviceS
                     reject(error);
                 }
                 else {
-                    accept(new ResponseParser(response.body));
+                    accept(new response_parser_1.ResponseParser(response.body));
                 }
             });
         }
@@ -54,7 +56,7 @@ export function calculateShippingRate(destination, weight, serviceType, serviceS
             let request = createCORSRequest('GET', encodedUrlQuery);
             if (request) {
                 request.onload = () => {
-                    accept(new ResponseParser(request.responseText));
+                    accept(new response_parser_1.ResponseParser(request.responseText));
                 };
                 request.onerror = () => {
                     reject(request.statusText);
@@ -67,6 +69,7 @@ export function calculateShippingRate(destination, weight, serviceType, serviceS
         }
     });
 }
+exports.calculateShippingRate = calculateShippingRate;
 /**
  * generate service options string
  * @param {Destination} destination destination object
@@ -74,7 +77,7 @@ export function calculateShippingRate(destination, weight, serviceType, serviceS
  * @param {string} option additional service options
  * @returns {string} service options string
  */
-export function generateServiceOption(destination, serviceSubtype, option) {
+function generateServiceOption(destination, serviceSubtype, option) {
     let serviceOption = serviceSubtype.name;
     let availableOptions = serviceSubtype.options;
     if (option) {
@@ -89,13 +92,14 @@ export function generateServiceOption(destination, serviceSubtype, option) {
         serviceOption += "~C" + destination.id;
     return serviceOption;
 }
+exports.generateServiceOption = generateServiceOption;
 /**
  * generate request object for the  provided method and url (for node environment only)
  * @param {string} method request method (i.e. 'GET')
  * @param {string} url request url
  * @return {object} {@class XMLHttpRequest} or {@class XDomainRequest} or null if not available
  */
-export function createCORSRequest(method, url) {
+function createCORSRequest(method, url) {
     let request = null;
     if (environment == "debug") {
         request = new request();
@@ -116,3 +120,4 @@ export function createCORSRequest(method, url) {
     }
     return request;
 }
+exports.createCORSRequest = createCORSRequest;

@@ -1,8 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Handles Israel postal service response
  * @author Benny Megidish
  */
-export class ResponseParser {
+class ResponseParser {
     // ignore unconventional naming, due to bad postal service API
     /**
      * Parses israel post response and provides easy way to consume the data
@@ -67,3 +69,4 @@ export class ResponseParser {
         return this.response;
     }
 }
+exports.ResponseParser = ResponseParser;

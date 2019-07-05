@@ -1,15 +1,25 @@
-const eShipmentTypes = require('./options').UniqueShipmentTypes;
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const options_1 = require("./options");
 /**
  * Loads and retrieves destination data
  * @author Benny Megidish
  */
-export class Destinations {
+class Destinations {
     // TODO: disjoint json source files to save memory and improve loading speed!!!?
     constructor(...mappings) {
         // load mapping [arguments] lazily to save time
         for (let i = 0; i < mappings.length; i++) {
             let argument = mappings[i];
-            if (Object.values(eShipmentTypes).includes(argument)) {
+            if (Object.values(options_1.UniqueShipmentTypes).includes(argument)) {
                 this.loadDestinationMap(argument);
             }
         }
@@ -19,21 +29,29 @@ export class Destinations {
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      */
     loadDestinationMap(shipmentType) {
-        switch (shipmentType) {
-            case "חבילה":
-                this.parcelDestinationMap = require('../mapping/data/destination-map-parcel.json');
-                break;
-            case "EMS":
-                this.emsDestinationMap = require('../mapping/data/destination-map-ems.json');
-                break;
-            case "eco post":
-                this.economicDestinationMap = require('../mapping/data/destination-map-eco.json');
-                break;
-            //case "":
-            default:
-                this.globalDestinationMap = require('../mapping/data/destination-map.json');
-                break;
-        }
+        return __awaiter(this, void 0, void 0, function* () {
+            let destinationMapping;
+            // dynamic destinations module import
+            switch (shipmentType) {
+                case "חבילה":
+                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map-parcel.json'));
+                    this.parcelDestinationMap = new Map(Object.entries(destinationMapping));
+                    break;
+                case "EMS":
+                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map-ems.json'));
+                    this.emsDestinationMap = new Map(Object.entries(destinationMapping));
+                    break;
+                case "eco post":
+                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map-eco.json'));
+                    this.economicDestinationMap = new Map(Object.entries(destinationMapping));
+                    break;
+                //case "":
+                default:
+                    destinationMapping = yield Promise.resolve().then(() => require('../mapping/data/destination-map.json'));
+                    this.globalDestinationMap = new Map(Object.entries(destinationMapping));
+                    break;
+            }
+        });
     }
     /**
      * return destination object for the hebrew postal service API
@@ -123,3 +141,4 @@ export class Destinations {
         return isLoaded;
     }
 }
+exports.Destinations = Destinations;
