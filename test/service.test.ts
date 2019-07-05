@@ -1,6 +1,6 @@
-const IPS = require('../index').IPS;
 const options = require('../src/options');
-const assert = require('chai').assert; 
+import { IPS } from '../index';
+import { assert } from 'chai';
 
 describe('Service', () => {
     let ips = new IPS();

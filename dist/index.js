@@ -1,12 +1,14 @@
-import { ResponseParser } from './src/response-parser';
-import { Options } from './src/options';
-export { ResponseParser, Options }
-
+import * as utils from './src/service-utils';
+import { Destinations } from './src/destinations';
+export const options = require('./src/options');
 /**
+ * Exposes Israel postal service API
  * @author Benny Megidish
  */
-
-export declare class IPS {
+export class IPS {
+    constructor() {
+        this.destinations = new Destinations();
+    }
     /**
      * calculate shipping rate for regular (non bulk) shipments
      * @param {string} destination destination country name (in CamelCase English)
@@ -17,9 +19,12 @@ export declare class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateShippingRate(destination: string, weight: number, shipmentType: string,
-        shipmentSubtype: any, serviceOption?: string, quantity?: number): Promise<ResponseParser> 
-
+    calculateShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
+        let isLocal = destination.toLowerCase() === 'israel';
+        return isLocal ?
+            this.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
+            this.calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity);
+    }
     /**
      * calculate shipping rate for bulk shipments
      * @param {string} destination destination country name (in CamelCase English)
@@ -30,9 +35,12 @@ export declare class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateBulkShippingRate(destination: string, weight: number, shipmentType: string,
-        shipmentSubtype: any, serviceOption?: string, quantity?: number): Promise<ResponseParser> 
-
+    calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
+        let isLocal = destination.toLowerCase() === 'israel';
+        return isLocal ?
+            this.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
+            this.calculateAbroadBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity);
+    }
     /**
      * calculate shipping rate for abroad shipments
      * @deprecated [#1] @since version 2.5.0 [#2] use {@link IPS#calculateShippingRate} instead
@@ -44,9 +52,12 @@ export declare class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateAbroadShippingRate(destination: string, weight: number, shipmentType: string,
-        shipmentSubtype: any, serviceOption?: string, quantity?: number): Promise<ResponseParser> 
-
+    calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
+        let destinationHE = this.destinations.getDestinationHe(destination, shipmentType);
+        let type = "משלוח דואר לחו\"ל";
+        let serviceType = type + "~" + shipmentType;
+        return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
+    }
     /**
      * calculate shipping rate for local shipments (in Israel)
      * @deprecated [#1] @since version 2.5.0 [#2] use {@link IPS#calculateShippingRate} instead
@@ -57,11 +68,14 @@ export declare class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateLocalShippingRate(weight: number, shipmentType: string,
-        shipmentSubtype: any, serviceOption?: string, quantity?: number): Promise<ResponseParser>
-
+    calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
+        let destinationHE = { id: "0", name: "" };
+        let type = "משלוח דואר בארץ";
+        let serviceType = type + "~" + shipmentType;
+        return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
+    }
     /**
-     * calculate abroad bulk shipping rate for abroad bulk shipments
+     * calculate bulk shipping rate for abroad bulk shipments
      * @deprecated [#1] @since version 2.5.0 [#2] use {@link IPS#calculateBulkShippingRate} instead
      * @param {string} destination destination country name (in CamelCase English)
      * @param {float} weight weight of the shipment in grams
@@ -71,11 +85,14 @@ export declare class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateAbroadBulkShippingRate(destination: string, weight: number, shipmentType: string,
-        shipmentSubtype: any, serviceOption?: string, quantity?: number): Promise<ResponseParser> 
-
+    calculateAbroadBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
+        let destinationHE = this.destinations.getDestinationHe(destination, shipmentType);
+        let type = "משלוח דואר כמותי";
+        let serviceType = type + "~" + shipmentType;
+        return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
+    }
     /**
-     * calculate local bulk shipping rate for local bulk shipments (in Israel)
+     * calculate bulk shipping rate for local bulk shipments (in Israel)
      * @deprecated [#1] @since version 2.5.0 [#2] use {@link IPS#calculateBulkShippingRate} instead
      * @param {float} weight weight of the shipment in grams
      * @param {string} shipmentType type of shipment (as defines in {@class Options})
@@ -84,13 +101,18 @@ export declare class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateLocalBulkShippingRate(weight: number, shipmentType: string,
-        shipmentSubtype: any, serviceOption?: string, quantity?: number): Promise<ResponseParser> 
-
+    calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
+        let destinationHE = { id: "0", name: "" };
+        let type = "משלוח דואר כמותי";
+        let serviceType = type + "~" + shipmentType;
+        return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
+    }
     /**
      * return all the available destination for the shipment type
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
-     * @returns {array} array that contains all the available destination for the shipment type
+     * @returns {string[]} array that contains all the available destination for the shipment type
      */
-    getAllDestination(shipmentType: string): string[]
+    getAllDestination(shipmentType) {
+        return this.destinations.getAllDestination(shipmentType);
+    }
 }

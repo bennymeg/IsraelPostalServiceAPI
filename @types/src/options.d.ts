@@ -8,15 +8,15 @@ export class Options {
 
 declare type LocalMailOptions = {
     LETTER: Option;
+    POSTCARD: Option;
     PARCEL: Option;
-    RESPONSE: Option;
+    LEAFLETS: Option;
 }
 
 declare type LocalBulkMailOptions = {
     LETTER: Option;
-    POSTCARD: Option;
     PARCEL: Option;
-    LEAFLETS: Option;
+    RESPONSE: Option;
 }
 
 declare type AbroadMailOptions = {

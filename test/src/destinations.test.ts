@@ -1,8 +1,8 @@
-const Destination = require('../../src/destinations').Destinations;
-const assert = require('chai').assert; 
+import { Destinations } from '../../src/destinations';
+import { assert } from 'chai';
 
 describe('Destinations', () => {
-    let destination = new Destination("EMS");
+    let destination = new Destinations("EMS");
 
     describe('Loading', () => {
         it('should load destination if provided in the constructor', () => {

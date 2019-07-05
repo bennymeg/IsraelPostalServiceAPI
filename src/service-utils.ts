@@ -1,9 +1,10 @@
-const ResponseParser = require('./response-parser').ResponseParser;
+import { ResponseParser } from './response-parser';
+import { Destination } from './destinations';
 
 // load correct XMLHttpRequest module according to the environment
-const XMLHttpRequest = require('./dynamic/xhr-node').XMLHttpRequest;
-const environment = require('./dynamic/xhr-node').env;
-
+const request = require('./dynamic/xhr-node').request;
+const environment = require('./dynamic/xhr-node').environment;
+let XDomainRequest: any;
 
 /**
  * Utilities module
@@ -12,7 +13,7 @@ const environment = require('./dynamic/xhr-node').env;
 
 /**
  * calculate shipping rate for all the shipment types
- * @param {object} destination destination object
+ * @param {Destination} destination destination object
  * @param {float} weight weight of the shipment in grams
  * @param {string} serviceType type of service 
  * @param {object} shipmentSubtype subtype of shipment (as define in the shipmentType {@class Options})
@@ -22,7 +23,9 @@ const environment = require('./dynamic/xhr-node').env;
  * @param {string} shipmentQuantity shipment quantity
  * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (see {@class ResponseParser})
  */
-function calculateShippingRate(destination, weight, serviceType, serviceSubtype, option, quantity=1, language="HE", shipmentQuantity="0") {
+export function calculateShippingRate(destination: Destination, weight: number, serviceType: string, serviceSubtype: any, 
+        option?: string, quantity=1, language="HE", shipmentQuantity="0"): Promise<any> {
+
     let serviceOption = generateServiceOption(destination, serviceSubtype, option);
     
     // request parameters
@@ -47,7 +50,7 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
         if (environment != "debug") {
             let useXDR = typeof XDomainRequest != "undefined" ? true : false;
 
-            XMLHttpRequest.get(encodedUrlQuery, { useXDR: useXDR }, (error, response) => {
+            request.get(encodedUrlQuery, { useXDR: useXDR }, (error, response) => {
                 if (error != null) {
                     reject(error);
                 } else {
@@ -77,12 +80,12 @@ function calculateShippingRate(destination, weight, serviceType, serviceSubtype,
 
 /**
  * generate service options string
- * @param {object} destination destination object
+ * @param {Destination} destination destination object
  * @param {object} serviceSubtype service subtype as describes in the {@class Options} class
  * @param {string} option additional service options
  * @returns {string} service options string
  */
-function generateServiceOption(destination, serviceSubtype, option) {
+export function generateServiceOption(destination: Destination, serviceSubtype: any, option: string): string {
     let serviceOption = serviceSubtype.name;   
     let availableOptions = serviceSubtype.options;
 
@@ -94,7 +97,7 @@ function generateServiceOption(destination, serviceSubtype, option) {
         serviceOption += "~" + availableOptions[Object.keys(availableOptions)[0]];
     }
  
-    if (destination != "")
+    if (destination && destination.name != "")
         serviceOption += "~C" + destination.id;
 
     return serviceOption;
@@ -106,11 +109,11 @@ function generateServiceOption(destination, serviceSubtype, option) {
  * @param {string} url request url
  * @return {object} {@class XMLHttpRequest} or {@class XDomainRequest} or null if not available
  */
-function createCORSRequest(method, url) {
+export function createCORSRequest(method: string, url: string): any {
     let request = null;
 
     if (environment == "debug") {
-        request = new XMLHttpRequest();
+        request = new request();
 
         if ("withCredentials" in request) {
             // Most browsers.
@@ -128,7 +131,3 @@ function createCORSRequest(method, url) {
 
     return request;
 }
-
-module.exports.calculateShippingRate = calculateShippingRate;
-module.exports.generateServiceOption = generateServiceOption;
-module.exports.createCORSRequest = createCORSRequest;

@@ -1,25 +1,28 @@
 const eShipmentTypes = require('./options').UniqueShipmentTypes;
 
+export interface Destination {
+    id: string,     // number
+    name: string
+}
+
 /**
  * Loads and retrieves destination data
  * @author Benny Megidish
  */
-class Destinations {
-    // TODO: disjoint json source files to save memory and improve loading speed!!!?
-    constructor() {
-        // load mapping lazily to save time
-        this.globalDestinationMap = undefined;
-        this.parcelDestinationMap = undefined;
-        this.emsDestinationMap = undefined;
-        this.economicDestinationMap = undefined;
+export class Destinations {
+    globalDestinationMap: Map<string, Destination>;
+    parcelDestinationMap: Map<string, Destination>;
+    emsDestinationMap: Map<string, Destination>;
+    economicDestinationMap: Map<string, Destination>;
 
-        for (let i = 0; i < arguments.length; i++) {
-            let argument = arguments[i];
+    // TODO: disjoint json source files to save memory and improve loading speed!!!?
+    constructor(...mappings: string[]) {
+        // load mapping [arguments] lazily to save time
+        for (let i = 0; i < mappings.length; i++) {
+            let argument = mappings[i];
             
-            if (typeof argument === 'string' || argument instanceof String) {
-                if (Object.values(eShipmentTypes).includes(argument)) {
-                    this.loadDestinationMap(argument);
-                }
+            if (Object.values(eShipmentTypes).includes(argument)) {
+                this.loadDestinationMap(argument);
             }
         }
     }
@@ -28,7 +31,7 @@ class Destinations {
      * loads the current destination mapping in a lazy manner
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      */
-    loadDestinationMap(shipmentType) {
+    loadDestinationMap(shipmentType: string) {
         switch (shipmentType) { 
             case "חבילה":
                 this.parcelDestinationMap = require('../mapping/data/destination-map-parcel.json');
@@ -50,10 +53,10 @@ class Destinations {
      * return destination object for the hebrew postal service API
      * @param {string} destination destination name in Camel-Case format
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
-     * @returns {object} destination object (if exists), or an empty string
+     * @returns {Destination} destination object (if exists), or an empty destination
      */
-    getDestinationHe(destination, shipmentType) {
-        let result = "";
+    getDestinationHe(destination: string, shipmentType: string): Destination {
+        let result = { id: "0", name: "" };
         this._verifyDestinationMapLoaded(shipmentType);
 
         switch (shipmentType) { 
@@ -78,10 +81,10 @@ class Destinations {
     /**
      * return all the available destination for the shipment type
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
-     * @returns {array} array that contains all the available destination for the shipment type
+     * @returns {Array<string>} array that contains all the available destination for the shipment type
      */
-    getAllDestination(shipmentType) {
-        let result;
+    getAllDestination(shipmentType: string): Array<string> {
+        let result: Array<string>;
         this._verifyDestinationMapLoaded(shipmentType);
                 
         switch (shipmentType) { 
@@ -108,8 +111,8 @@ class Destinations {
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      * @returns {boolean} true, if the appropriate mapping was already loaded, false otherwise
      */
-    _verifyDestinationMapLoaded(shipmentType) {
-        let isLoaded = true;
+    _verifyDestinationMapLoaded(shipmentType: string): boolean {
+        let isLoaded: boolean = true;
 
         switch (shipmentType) { 
             case "חבילה":
@@ -146,5 +149,3 @@ class Destinations {
         return isLoaded;
     }
 }
-
-module.exports.Destinations = Destinations;

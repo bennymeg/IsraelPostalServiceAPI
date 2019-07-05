@@ -1,7 +1,7 @@
-const environment = require('../../src/dynamic/xhr-node').env;
-const utils = require('../../src/service-utils');
+const environment = require('../../src/dynamic/xhr-node').environment;
 const options = require('../../src/options');
-const assert = require('chai').assert; 
+import * as utils from '../../src/service-utils';
+import { assert } from 'chai';
 
 describe('Service Utilities', () => {
     if (environment == "debug") {
@@ -47,7 +47,7 @@ describe('Service Utilities', () => {
         });
 
         it('should return valid service option for local shipment', () => {
-            let result = utils.generateServiceOption("", localServiceSubtype, null);
+            let result = utils.generateServiceOption({ id: "0", name: "" }, localServiceSubtype, null);
             assert.equal(result, "משלוח רגיל");
         });
     });

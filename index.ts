@@ -1,13 +1,15 @@
-const options = require('./src/options');
-const utils = require('./src/service-utils');
-const ResponseParser = require('./src/response-parser').ResponseParser;
-const Destinations = require('./src/destinations').Destinations;
+import * as utils from './src/service-utils';
+import { ResponseParser } from './src/response-parser';
+import { Destinations } from './src/destinations';
+export const options = require('./src/options');
 
 /**
  * Exposes Israel postal service API
  * @author Benny Megidish
  */
-class IPS {
+export class IPS {
+    destinations: any; //todo
+
     constructor() {
         this.destinations = new Destinations();
     }
@@ -78,7 +80,7 @@ class IPS {
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
     calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = "";
+        let destinationHE = { id: "0", name: ""};
         let type = "משלוח דואר בארץ";
         let serviceType = type + "~" + shipmentType;
 
@@ -115,7 +117,7 @@ class IPS {
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
     calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = "";
+        let destinationHE = { id: "0", name: ""};
         let type = "משלוח דואר כמותי";
         let serviceType = type + "~" + shipmentType;
 
@@ -131,6 +133,3 @@ class IPS {
         return this.destinations.getAllDestination(shipmentType);
     }
 }
-
-module.exports.IPS = IPS;
-module.exports.Options = options;

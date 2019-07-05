@@ -1,14 +1,20 @@
+import { Price, Response } from "../@types/src/response";
+
 /**
  * Handles Israel postal service response
  * @author Benny Megidish
  */
-class ResponseParser {
+
+export class ResponseParser {
+    response: Response;
+    prices: Price;
+
     // ignore unconventional naming, due to bad postal service API
     /**
      * Parses israel post response and provides easy way to consume the data
      * @param {string} response the response the have been received from the israel-post server
      */
-    constructor(response) {
+    constructor(response: string) {
         this.response = JSON.parse(response);
         this.prices = this.response.prices ? this.response.prices[0] : undefined;
     }
@@ -16,22 +22,22 @@ class ResponseParser {
     /**
      * @returns {string} response status message
      */
-    getStatus() {
+    getStatus(): string {
         return `${this.response.status > 0 ? 'הושלם.' : 'נכשל: '}${this.response.statusDesc}`;
     }
 
     /**
      * @returns {string} price group of the shipment
      */
-    getPriceGroup() {
+    getPriceGroup(): string {
         return this.response.pcode;
     }
 
     /**
      * @returns {number} shipment price for individual package
      */
-    getPrice() {
-        let price;
+    getPrice(): number {
+        let price: number;
 
         if (this.prices && this.prices.Pprice) {
             price = Number(this.prices.Pprice);
@@ -43,8 +49,8 @@ class ResponseParser {
     /**
      * @returns {number} shipment price for the entire shipment
      */
-    getTotalPrice() {
-        let price;
+    getTotalPrice(): number {
+        let price: number;
 
         if (this.prices && this.prices.Ptotal) {
             price = Number(this.prices.Ptotal);
@@ -56,15 +62,15 @@ class ResponseParser {
     /**
      * @returns {boolean} whether we have comments about the method
      */
-    hasComments() {
+    hasComments(): boolean {
         return parseInt(this.response.commTextsNo) > 0 || false;
     }
 
     /**
-     * @returns {array<string>} array of comments about the method if available
+     * @returns {Array<string>} array of comments about the method if available
      */
-    getComments() {
-        let result = "";
+    getComments(): Array<string> {
+        let result = [""];
 
         if (this.hasComments()) {
             result = this.response.commTexts.map(comment => comment.ctext);
@@ -74,11 +80,9 @@ class ResponseParser {
     }
 
     /**
-     * @returns {string} raw json response from the server
+     * @returns {Response} raw json response from the server
      */
-    getRawData() {
+    getRawData(): Response {
         return this.response;
     }
 }
-
-module.exports.ResponseParser = ResponseParser;

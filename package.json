@@ -1,15 +1,16 @@
 {
   "name": "israel-postal-service-api",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "description": "Israel postal office pricing calculator",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "browser": {
     "request": "xhr",
-    "./src/dynamic/xhr-node.js": "./src/dynamic/xhr-browser.js"
+    "./dist/src/dynamic/xhr-node.js": "./dist/src/dynamic/xhr-browser.js"
   },
   "homepage": "https://github.com/bennymeg/IsraelPostalServiceAPI",
   "scripts": {
-    "test": "npm run lint && mocha --recursive || ECHO.",
+    "start": "npm run lint && tsc",
+    "test": "npm run start && mocha --require ts-node/register 'test/**/*.ts' --recursive || ECHO.",
     "lint": "jshint --exclude-path=.gitignore ."
   },
   "keywords": [
@@ -32,9 +33,13 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.0.12",
     "chai": "^4.2.0",
     "jshint": "^2.10.2",
     "mocha": "^6.1.4",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2",
     "xmlhttprequest": "^1.8.0"
   },
   "dependencies": {

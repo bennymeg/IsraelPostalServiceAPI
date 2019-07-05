@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "allowJs": true,
+        "target": "es6"
+    },
+        "include": [
+        "./index.ts",
+        "./src/**/*",
+        "@types/src/response.d.ts"
+    ]
+}
