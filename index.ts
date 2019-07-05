@@ -1,5 +1,5 @@
-import * as utils from './src/service-utils';
 import { Destinations } from './src/destinations';
+import * as utils from './src/service-utils';
 export const options = require('./src/options');
 
 /**
