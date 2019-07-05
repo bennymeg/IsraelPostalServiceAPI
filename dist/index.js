@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const destinations_1 = require("./src/destinations");
 const utils = require("./src/service-utils");
-exports.options = require('./src/options');
+exports.Options = require('./src/options');
 /**
  * Exposes Israel postal service API
  * @author Benny Megidish
