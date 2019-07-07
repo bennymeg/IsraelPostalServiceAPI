@@ -9,13 +9,12 @@ export const Options: OptionsType = require('./src/options');
  * @author Benny Megidish
  */
 export class IPS {
-    destinations: Destinations;
+    private destinations: Destinations;
 
     constructor() {
         this.destinations = new Destinations();
     }
 
-    //todo: typing
     /**
      * calculate shipping rate for regular (non bulk) shipments
      * @param {string} destination destination country name (in CamelCase English)
@@ -27,7 +26,7 @@ export class IPS {
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
     calculateShippingRate(destination: string, weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
-        let isLocal: boolean = destination.toLowerCase() === 'israel';
+        let isLocal: boolean = this.isLocalShipment(destination);
 
         return isLocal ? 
             this.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
@@ -45,7 +44,7 @@ export class IPS {
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
     calculateBulkShippingRate(destination: string, weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
-        let isLocal: boolean = destination.toLowerCase() === 'israel';
+        let isLocal: boolean = this.isLocalShipment(destination);
 
         return isLocal ? 
             this.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
@@ -133,5 +132,9 @@ export class IPS {
      */
     getAllDestination(shipmentType: string): Array<string> {
         return this.destinations.getAllDestination(shipmentType);
+    }
+
+    private isLocalShipment(destination: string): boolean {
+        return destination.toLowerCase() === 'israel';
     }
 }

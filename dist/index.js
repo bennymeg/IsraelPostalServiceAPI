@@ -11,7 +11,6 @@ class IPS {
     constructor() {
         this.destinations = new destinations_1.Destinations();
     }
-    //todo: typing
     /**
      * calculate shipping rate for regular (non bulk) shipments
      * @param {string} destination destination country name (in CamelCase English)
@@ -23,7 +22,7 @@ class IPS {
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
     calculateShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
-        let isLocal = destination.toLowerCase() === 'israel';
+        let isLocal = this.isLocalShipment(destination);
         return isLocal ?
             this.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
             this.calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity);
@@ -39,7 +38,7 @@ class IPS {
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
     calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption = null, quantity = 1) {
-        let isLocal = destination.toLowerCase() === 'israel';
+        let isLocal = this.isLocalShipment(destination);
         return isLocal ?
             this.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
             this.calculateAbroadBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption, quantity);
@@ -117,6 +116,9 @@ class IPS {
      */
     getAllDestination(shipmentType) {
         return this.destinations.getAllDestination(shipmentType);
+    }
+    isLocalShipment(destination) {
+        return destination.toLowerCase() === 'israel';
     }
 }
 exports.IPS = IPS;

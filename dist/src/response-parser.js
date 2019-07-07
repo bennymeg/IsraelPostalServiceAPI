@@ -15,6 +15,12 @@ class ResponseParser {
         this.prices = this.response.prices ? this.response.prices[0] : undefined;
     }
     /**
+     * @returns {boolean} has the query succeeded or not
+     */
+    hasSucceeded() {
+        return this.response && this.response.status > 0;
+    }
+    /**
      * @returns {string} response status message
      */
     getStatus() {
