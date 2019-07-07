@@ -1,4 +1,4 @@
-import { Destinations } from '../../src/destinations';
+import { Destinations, Destination } from '../../src/destinations';
 import { assert } from 'chai';
 
 describe('Destinations', () => {
@@ -6,20 +6,20 @@ describe('Destinations', () => {
 
     describe('Loading', () => {
         it('should load destination if provided in the constructor', () => {
-            let result = destination._verifyDestinationMapLoaded("EMS");
+            let result: boolean = destination._verifyDestinationMapLoaded("EMS");
 
             assert.isTrue(result);
         });
 
         it('should load destination explicitly', () => {
             destination.loadDestinationMap("חבילה");
-            let result = destination._verifyDestinationMapLoaded("EMS");
+            let result: boolean = destination._verifyDestinationMapLoaded("EMS");
 
             assert.isTrue(result);
         });
 
         it('should retrieve destination from loaded mappings', () => {
-            let result = destination.getDestinationHe("Canada", "EMS");
+            let result: Destination = destination.getDestinationHe("Canada", "EMS");
 
             assert.exists(result);
             assert.equal(Object.keys(result).length, 2);
