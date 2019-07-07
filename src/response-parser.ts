@@ -6,8 +6,8 @@ import { Price, Response } from "../@types/src/response";
  */
 
 export class ResponseParser {
-    response: Response;
-    prices: Price;
+    private response: Response;
+    private prices: Price;
 
     // ignore unconventional naming, due to bad postal service API
     /**
@@ -17,6 +17,13 @@ export class ResponseParser {
     constructor(response: string) {
         this.response = JSON.parse(response);
         this.prices = this.response.prices ? this.response.prices[0] : undefined;
+    }
+
+    /**
+     * @returns {boolean} has the query succeeded or not
+     */
+    hasSucceeded(): boolean {
+        return this.response && this.response.status > 0;
     }
 
     /**
