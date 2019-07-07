@@ -1,6 +1,6 @@
 {
   "name": "israel-postal-service-api",
-  "version": "3.0.0-alpha.8",
+  "version": "3.0.0-alpha.9",
   "description": "Israel postal office pricing calculator",
   "main": "./dist/index.js",
   "browser": {
@@ -11,6 +11,7 @@
   "scripts": {
     "start": "npm run lint && tsc",
     "test": "npm run start && mocha --require ts-node/register 'test/**/*.ts' --recursive || ECHO.",
+    "doc": "npm run start && jsdoc2md ./dist/index.js > ./docs/api/service.md && jsdoc2md ./dist/src/response-parser.js > ./docs/api/response-parser.md",
     "lint": "jshint .",
     "lint:all": "jshint --exclude-path=.gitignore ."
   },
