@@ -1,5 +1,6 @@
 import { ResponseParser } from './response-parser';
 import { Destination } from './destinations';
+import { Response } from 'request';
 
 // load correct XMLHttpRequest module according to the environment
 const request = require('./dynamic/xhr-node').request;
@@ -50,7 +51,7 @@ export function calculateShippingRate(destination: Destination, weight: number, 
         if (environment != "debug") {
             let useXDR: boolean = typeof XDomainRequest != "undefined" ? true : false;
 
-            request.get(encodedUrlQuery, { useXDR: useXDR }, (error, response) => {
+            request.get(encodedUrlQuery, { useXDR: useXDR }, (error: any, response: Response) => {
                 if (error != null) {
                     reject(error);
                 } else {
