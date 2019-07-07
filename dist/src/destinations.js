@@ -11,7 +11,7 @@ class Destinations {
         // load mapping [arguments] lazily to save time
         for (let i = 0; i < mappings.length; i++) {
             let argument = mappings[i];
-            if (Object.values(options_1.UniqueShipmentTypes).includes(argument)) {
+            if (Object.values(options_1.ShipmentMethods).includes(argument)) {
                 this.loadDestinationMap(argument);
             }
         }

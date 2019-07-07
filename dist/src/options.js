@@ -42,10 +42,11 @@ exports.AbroadMailOptions = {
 exports.AbroadBulkMailOptions = {
     PARCEL: { shipmentType: "דברי דואר לחו\"ל", shipmentSubtypes: { regular: { name: "דואר אויר", options: null } } }
 };
-// TODO: check all cases in options
-// TODO: maybe this may cause confusion?
-exports.UniqueShipmentTypes = {
-    ALL: "",
+/**
+ *  Set of unique shipment methods that divide the world into regions (have different reach)
+ */
+exports.ShipmentMethods = {
+    REGULAR: "",
     PARCEL: "חבילה",
     EMS: "EMS",
     ECONOMIC: "eco post" // "eco"

@@ -47,10 +47,11 @@ export const AbroadBulkMailOptions: AbroadBulkMailOptionsType = {
     PARCEL: { shipmentType: "דברי דואר לחו\"ל", shipmentSubtypes: { regular: { name: "דואר אויר", options: null }} }
 };
 
-// TODO: check all cases in options
-// TODO: maybe this may cause confusion?
-export const UniqueShipmentTypes = {
-    ALL: "",
+/**
+ *  Set of unique shipment methods that divide the world into regions (have different reach)
+ */
+export const ShipmentMethods = {
+    REGULAR: "",             // "all"
     PARCEL: "חבילה",        // "parcel"
     EMS: "EMS",             // "ems"
     ECONOMIC: "eco post"    // "eco"

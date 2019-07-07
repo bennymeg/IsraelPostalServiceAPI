@@ -1,4 +1,4 @@
-import { UniqueShipmentTypes as eShipmentTypes } from './options';
+import { ShipmentMethods } from './options';
 
 export interface Destination {
     id: string,     // number
@@ -21,7 +21,7 @@ export class Destinations {
         for (let i = 0; i < mappings.length; i++) {
             let argument: string = mappings[i];
             
-            if (Object.values(eShipmentTypes).includes(argument)) {
+            if (Object.values(ShipmentMethods).includes(argument)) {
                 this.loadDestinationMap(argument);
             }
         }

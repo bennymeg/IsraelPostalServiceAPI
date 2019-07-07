@@ -110,11 +110,19 @@ class IPS {
         return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
     /**
-     * return all the available destination for the shipment type
+     * pre-loads the destinations for the requested shipment method
+     * by default, the destinations are loaded lazily on-demand
+     * @param {string} shipmentMethod method of shipment as defined in the {@class Options#ShipmentMethods} class
+     */
+    preloadDestinations(shipmentMethod) {
+        this.destinations.loadDestinationMap(shipmentMethod);
+    }
+    /**
+     * return all the available destinations for the shipment type
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      * @returns {Array<string>} array that contains all the available destination for the shipment type
      */
-    getAllDestination(shipmentType) {
+    getAllDestinations(shipmentType) {
         return this.destinations.getAllDestination(shipmentType);
     }
     isLocalShipment(destination) {

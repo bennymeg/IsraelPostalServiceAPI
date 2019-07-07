@@ -126,11 +126,20 @@ export class IPS {
     }
 
     /**
-     * return all the available destination for the shipment type
+     * pre-loads the destinations for the requested shipment method
+     * by default, the destinations are loaded lazily on-demand
+     * @param {string} shipmentMethod method of shipment as defined in the {@class Options#ShipmentMethods} class
+     */
+    preloadDestinations(shipmentMethod: string) {
+        this.destinations.loadDestinationMap(shipmentMethod);
+    }
+
+    /**
+     * return all the available destinations for the shipment type
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      * @returns {Array<string>} array that contains all the available destination for the shipment type
      */
-    getAllDestination(shipmentType: string): Array<string> {
+    getAllDestinations(shipmentType: string): Array<string> {
         return this.destinations.getAllDestination(shipmentType);
     }
 
