@@ -1,6 +1,7 @@
-import { Destinations } from './src/destinations';
+import { Destinations, Destination } from './src/destinations';
 import * as utils from './src/service-utils';
 import { OptionsType } from './@types/src/options';
+import { ResponseParser } from './src/response-parser';
 export const Options: OptionsType = require('./src/options');
 
 /**
@@ -25,8 +26,8 @@ export class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let isLocal = destination.toLowerCase() === 'israel';
+    calculateShippingRate(destination: string, weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
+        let isLocal: boolean = destination.toLowerCase() === 'israel';
 
         return isLocal ? 
             this.calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
@@ -43,8 +44,8 @@ export class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let isLocal = destination.toLowerCase() === 'israel';
+    calculateBulkShippingRate(destination: string, weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
+        let isLocal: boolean = destination.toLowerCase() === 'israel';
 
         return isLocal ? 
             this.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity) :
@@ -62,10 +63,10 @@ export class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateAbroadShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = this.destinations.getDestinationHe(destination, shipmentType);
-        let type = "משלוח דואר לחו\"ל";
-        let serviceType = type + "~" + shipmentType;
+    calculateAbroadShippingRate(destination: string, weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
+        let destinationHE: Destination = this.destinations.getDestinationHe(destination, shipmentType);
+        let type: string = "משלוח דואר לחו\"ל";
+        let serviceType: string = type + "~" + shipmentType;
 
         return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
@@ -80,10 +81,10 @@ export class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateLocalShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = { id: "0", name: ""};
-        let type = "משלוח דואר בארץ";
-        let serviceType = type + "~" + shipmentType;
+    calculateLocalShippingRate(weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
+        let destinationHE: Destination = { id: "0", name: ""};
+        let type: string = "משלוח דואר בארץ";
+        let serviceType: string = type + "~" + shipmentType;
 
         return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
@@ -99,10 +100,10 @@ export class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateAbroadBulkShippingRate(destination, weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = this.destinations.getDestinationHe(destination, shipmentType);
-        let type = "משלוח דואר כמותי";
-        let serviceType = type + "~" + shipmentType;
+    calculateAbroadBulkShippingRate(destination: string, weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
+        let destinationHE: Destination = this.destinations.getDestinationHe(destination, shipmentType);
+        let type: string = "משלוח דואר כמותי";
+        let serviceType: string = type + "~" + shipmentType;
 
         return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
@@ -117,10 +118,10 @@ export class IPS {
      * @param {integer} quantity amount of packages
      * @returns {Promise<ResponseParser>} a promise with the parsed shipment data (@see {@class ResponseParser})
      */
-    calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption=null, quantity=1) {
-        let destinationHE = { id: "0", name: ""};
-        let type = "משלוח דואר כמותי";
-        let serviceType = type + "~" + shipmentType;
+    calculateLocalBulkShippingRate(weight: number, shipmentType: string, shipmentSubtype: any, serviceOption=null, quantity=1): Promise<ResponseParser> {
+        let destinationHE: Destination = { id: "0", name: ""};
+        let type: string = "משלוח דואר כמותי";
+        let serviceType: string = type + "~" + shipmentType;
 
         return utils.calculateShippingRate(destinationHE, weight, serviceType, shipmentSubtype, serviceOption, quantity);
     }
@@ -130,7 +131,7 @@ export class IPS {
      * @param {string} shipmentType type of shipment as defined in the {@class Options} class
      * @returns {Array<string>} array that contains all the available destination for the shipment type
      */
-    getAllDestination(shipmentType): Array<string> {
+    getAllDestination(shipmentType: string): Array<string> {
         return this.destinations.getAllDestination(shipmentType);
     }
 }

@@ -26,7 +26,7 @@ let XDomainRequest: any;
 export function calculateShippingRate(destination: Destination, weight: number, serviceType: string, serviceSubtype: any, 
         option?: string, quantity=1, language="HE", shipmentQuantity="0"): Promise<any> {
 
-    let serviceOption = generateServiceOption(destination, serviceSubtype, option);
+    let serviceOption: string = generateServiceOption(destination, serviceSubtype, option);
     
     // request parameters
     let parameters = { 
@@ -41,14 +41,14 @@ export function calculateShippingRate(destination: Destination, weight: number, 
 
     // generate request
     //"https://www.israelpost.co.il/npostcalc.nsf/CalcPrice?openagent&lang=HE&menuChosen=%D7%9E%D7%A9%D7%9C%D7%95%D7%97+%D7%93%D7%95%D7%90%D7%A8+%D7%9C%D7%97%D7%95%22%D7%9C~%D7%A6%D7%A8%D7%95%D7%A8+%D7%A7%D7%98%D7%9F&serviceoption=%D7%93%D7%95%D7%90%D7%A8+%D7%90%D7%95%D7%99%D7%A8~%D7%9E%D7%A9%D7%9C%D7%95%D7%97+%D7%A8%D7%92%D7%99%D7%9C~C29&qty=1&shipqty=0&weight=33&cname=%D7%90%D7%A1%D7%A0%D7%A1%D7%99%D7%95%D7%9F%0A&_=1538931508025"
-    let url = "https://www.israelpost.co.il/npostcalc.nsf/CalcPrice?openagent";
-    let queryString = Object.keys(parameters).map(key => key + '=' + parameters[key]).join('&');
-    let encodedUrlQuery = encodeURI(url + "&" + queryString.replace(/\s/g, "+"));
+    let url: string = "https://www.israelpost.co.il/npostcalc.nsf/CalcPrice?openagent";
+    let queryString: string = Object.keys(parameters).map(key => key + '=' + parameters[key]).join('&');
+    let encodedUrlQuery: string = encodeURI(url + "&" + queryString.replace(/\s/g, "+"));
     
     // send request and return a promise
     return new Promise((accept, reject) => {
         if (environment != "debug") {
-            let useXDR = typeof XDomainRequest != "undefined" ? true : false;
+            let useXDR: boolean = typeof XDomainRequest != "undefined" ? true : false;
 
             request.get(encodedUrlQuery, { useXDR: useXDR }, (error, response) => {
                 if (error != null) {

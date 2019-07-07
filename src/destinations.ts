@@ -19,7 +19,7 @@ export class Destinations {
     constructor(...mappings: string[]) {
         // load mapping [arguments] lazily to save time
         for (let i = 0; i < mappings.length; i++) {
-            let argument = mappings[i];
+            let argument: string = mappings[i];
             
             if (Object.values(eShipmentTypes).includes(argument)) {
                 this.loadDestinationMap(argument);
@@ -63,7 +63,7 @@ export class Destinations {
      * @returns {Destination} destination object (if exists), or an empty destination
      */
     getDestinationHe(destination: string, shipmentType: string): Destination {
-        let result = { id: "0", name: "" };
+        let result: Destination = { id: "0", name: "" };
         this._verifyDestinationMapLoaded(shipmentType);
 
         switch (shipmentType) { 
