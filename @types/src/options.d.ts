@@ -36,7 +36,11 @@ declare type AbroadBulkMailOptionsType = {
 
 declare type Option = {
     shipmentType: string,
-    shipmentSubtypes: ShipmentSubtypes | any           // FIXME
+    shipmentSubtypes: ShipmentSubtypes                  // FIXME: find more tailored solution as per #13
+}
+
+declare type TShipmentSubtypes = {
+    [key: string]: ShipmentSubtype
 }
 
 declare type ShipmentSubtypes = {
@@ -53,7 +57,11 @@ declare type ShipmentSubtypes = {
 
 declare type ShipmentSubtype = {
     name: string,
-    options?: ShipmentSubtypeOption | any               // FIXME
+    options?: ShipmentSubtypeOption                     // FIXME: find more tailored solution as per #13
+}
+
+declare type TShipmentSubtypeOption = {
+    [key: string]: string
 }
 
 declare type ShipmentSubtypeOption = {
