@@ -1,6 +1,7 @@
 import os
 import codecs
 import json
+from googletrans import Translator
 
 """
 This script combines all possible country destinations into json files
@@ -42,6 +43,8 @@ def merge(mappingSourceFilename):
 
         if filename.endswith(".csv"):
             input_file_path = os.path.join(he_directory_path, filename)
+            method_type = filename.replace(".csv", "-").split('-')[2].upper()
+            method_type = "ALL" if method_type == '' else method_type
             output_file_path = os.path.join(output_directory_path, filename).replace(".csv", ".json")
             output_dict_file = dict()
 
@@ -56,7 +59,13 @@ def merge(mappingSourceFilename):
                         output_dict_file[en_country_dict[_id].rstrip()] = {'id': _id, 'name': name}
                         #map_file.write('%s, %s' % (line.rstrip(), en_country_dict[_id]))
                     else:
-                        output_dict_file["TODO_" + name] = {'id': _id, 'name': name} 
+                        try:
+                            translated_name = translator.translate(name, src='iw', dest='en').text
+                        except:
+                            translated_name = "TODO_" + name
+
+                        output_dict_file[translated_name] = {'id': _id, 'name': name} 
+                        print("%s: Can't translate %s into English, defaulting to %s (google)" % (method_type, name[::-1], translated_name))
                         #map_file.write('%s, %s\n' % (line.rstrip(), "TODO")) 
 
             if (output_dict_file != None):
@@ -66,4 +75,5 @@ def merge(mappingSourceFilename):
                     json.dump(output_dict_file, map_file)          
 
 if __name__ == "__main__":
+    translator = Translator()
     merge('destination-map.csv')
