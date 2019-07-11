@@ -1,4 +1,4 @@
-import { Price, Response } from "../@types/src/response";
+import { Price, Response } from "../types/response";
 
 /**
  * Handles Israel postal service response

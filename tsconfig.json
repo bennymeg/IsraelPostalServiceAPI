@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "allowJs": true,
+        "declaration": true,
         "resolveJsonModule": true,
         "module": "commonjs",
         "moduleResolution": "node",
@@ -10,6 +10,6 @@
     "include": [
         "./index.ts",
         "./src/**/*",
-        "@types/src/response.d.ts"
+        "types/src/*", "@types/response.ts", "@types/options.ts"
     ]
 }

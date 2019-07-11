@@ -1,4 +1,4 @@
-import { LocalMailOptionsType, LocalBulkMailOptionsType, AbroadMailOptionsType, AbroadBulkMailOptionsType } from '../@types/src/options'
+import { LocalMailOptionsType, LocalBulkMailOptionsType, AbroadMailOptionsType, AbroadBulkMailOptionsType } from '../types/options'
 
 /**
  * This module contains all the shipping options enumerations

@@ -6,20 +6,20 @@ export class OptionsType {
     static UniqueShipmentTypes: any;
 }
 
-declare type LocalMailOptionsType = {
+export declare type LocalMailOptionsType = {
     LETTER: Option;
     POSTCARD: Option;
     PARCEL: Option;
     LEAFLETS: Option;
 }
 
-declare type LocalBulkMailOptionsType = {
+export declare type LocalBulkMailOptionsType = {
     LETTER: Option;
     PARCEL: Option;
     RESPONSE: Option;
 }
 
-declare type AbroadMailOptionsType = {
+export declare type AbroadMailOptionsType = {
     LETTER: Option;
     POSTCARD: Option;
     SMALL: Option;
@@ -30,7 +30,7 @@ declare type AbroadMailOptionsType = {
     ECO: Option;
 }
 
-declare type AbroadBulkMailOptionsType = {
+export declare type AbroadBulkMailOptionsType = {
     PARCEL: Option;
 }
 
