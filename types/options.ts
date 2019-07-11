@@ -1,9 +1,9 @@
-export class OptionsType {
-    static LocalMailOptions: LocalMailOptionsType;
-    static LocalBulkMailOptions: LocalBulkMailOptionsType;
-    static AbroadMailOptions: AbroadMailOptionsType;
-    static AbroadBulkMailOptions: AbroadBulkMailOptionsType;
-    static UniqueShipmentTypes: any;
+export declare interface OptionsType {
+    LocalMailOptions: LocalMailOptionsType;
+    LocalBulkMailOptions: LocalBulkMailOptionsType;
+    AbroadMailOptions: AbroadMailOptionsType;
+    AbroadBulkMailOptions: AbroadBulkMailOptionsType;
+    UniqueShipmentTypes: any;
 }
 
 export declare type LocalMailOptionsType = {
