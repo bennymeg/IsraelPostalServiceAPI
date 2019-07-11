@@ -1,1 +1,5 @@
-mapping/
+mapping/en/*
+mapping/he/*
+mapping/script/*
+@types/**/*
+.vscode
