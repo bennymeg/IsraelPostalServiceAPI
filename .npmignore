@@ -1,8 +1,8 @@
-mapping/en/*
-mapping/he/*
-mapping/script/*
-types/*
-src/**/*
-test/**/*
-docs/**/*
+mapping/
+types/
+ref/
+res/
+src/
+test/
+docs/
 .vscode
