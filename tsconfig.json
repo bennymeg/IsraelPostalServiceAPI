@@ -10,6 +10,6 @@
     "include": [
         "./index.ts",
         "./src/**/*",
-        "types/src/*", "@types/response.ts", "@types/options.ts"
+        "./types/*"
     ]
 }

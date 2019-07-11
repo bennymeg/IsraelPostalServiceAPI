@@ -1,6 +1,6 @@
 {
   "name": "israel-postal-service-api",
-  "version": "3.0.0-beta.3",
+  "version": "3.0.0-beta.4",
   "description": "Israel postal office pricing calculator",
   "main": "./dist/index.js",
   "browser": {
@@ -9,7 +9,8 @@
   },
   "homepage": "https://github.com/bennymeg/IsraelPostalServiceAPI",
   "scripts": {
-    "start": "npm run lint && tsc && node ./dist/index.js",
+    "compile": "tsc && XCOPY /S /y .\\mapping\\data\\* .\\dist\\mapping\\data\\",
+    "start": "npm run lint && npm run compile && node ./dist/index.js",
     "test": "npm run start && mocha --require ts-node/register 'test/**/*.ts' --recursive || ECHO.",
     "doc": "npm run start && jsdoc2md ./dist/index.js > ./docs/api/service.md && jsdoc2md ./dist/src/response-parser.js > ./docs/api/response-parser.md",
     "lint": "jshint .",
