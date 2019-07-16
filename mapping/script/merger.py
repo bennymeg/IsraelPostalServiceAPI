@@ -1,3 +1,17 @@
+#    Copyright 2019 Benny Megidish
+
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
+
+#        http://www.apache.org/licenses/LICENSE-2.0
+
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+
 import os
 import codecs
 import json
@@ -30,7 +44,15 @@ def createEnCountryDict(filename):
 
     return en_country_dict
 
-def merge(mappingSourceFilename):
+def translate(text):
+    try:
+        translated_name = translator.translate(text, src='iw', dest='en').text
+    except:
+        translated_name = "TODO_" + text
+
+    return translated_name
+
+def merge(mappingSourceFilename, debug=False):
     ''' iterates over every csv file int the input directory and generate an English dictionary for each file '''
 
     he_directory_path = getHeMappingDirectory()
@@ -58,11 +80,12 @@ def merge(mappingSourceFilename):
                     if en_country_dict.__contains__(_id):
                         output_dict_file[en_country_dict[_id].rstrip()] = {'id': _id, 'name': name}
                         #map_file.write('%s, %s' % (line.rstrip(), en_country_dict[_id]))
+
+                        if debug:
+                            translated_name = translate(name)
+                            print("%s: %s -> %s [%s]" % (method_type, name[::-1], en_country_dict[_id].rstrip(), translated_name))
                     else:
-                        try:
-                            translated_name = translator.translate(name, src='iw', dest='en').text
-                        except:
-                            translated_name = "TODO_" + name
+                        translated_name = translate(name)
 
                         output_dict_file[translated_name] = {'id': _id, 'name': name} 
                         print("%s: Can't translate %s into English, defaulting to %s (google)" % (method_type, name[::-1], translated_name))
