@@ -62,4 +62,18 @@ describe('Service', () => {
             assert.fail(error);
         });
     });
+
+    it('should check if a shipment is eligible for express shipment', () => {
+        let serviceType: string = options.AbroadMailOptions.EMS.shipmentType;
+        
+        assert.isTrue(ips.isEligibleForExpressShipment(serviceType, "Canada"));
+        assert.isFalse(ips.isEligibleForExpressShipment(serviceType, "Afghanistan"));
+    });
+
+    it('should check if a shipment is eligible for economic shipment', () => {
+        let serviceType: string = options.AbroadMailOptions.ECO.shipmentType;
+        
+        assert.isTrue(ips.isEligibleForEconomicShipment(serviceType, "Australia"));
+        assert.isFalse(ips.isEligibleForEconomicShipment(serviceType, "Alaska"));
+    });
 });

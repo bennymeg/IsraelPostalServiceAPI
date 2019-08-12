@@ -88,5 +88,19 @@ export declare class IPS {
      * @returns {Array<string>} array that contains all the available destination for the shipment type
      */
     getAllDestinations(shipmentType: string): Array<string>;
+    /**
+     * verify if the shipment is eligible for economic shipment
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     * @param {string} destination destination country name (in CamelCase English)
+     * @returns {boolean} true, if the shipment is eligible for economic shipment, otherwise, false
+     */
+    isEligibleForExpressShipment(shipmentType: string, destination: string): boolean;
+    /**
+     * verify if the shipment is eligible for economic shipment
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     * @param {string} destination destination country name (in CamelCase English)
+     * @returns {boolean} true, if the shipment is eligible for economic shipment, otherwise, false
+     */
+    isEligibleForEconomicShipment(shipmentType: string, destination: string): boolean;
     private isLocalShipment;
 }

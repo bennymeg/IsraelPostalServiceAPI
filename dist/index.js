@@ -135,6 +135,30 @@ class IPS {
     getAllDestinations(shipmentType) {
         return this.destinations.getAllDestination(shipmentType);
     }
+    /**
+     * verify if the shipment is eligible for economic shipment
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     * @param {string} destination destination country name (in CamelCase English)
+     * @returns {boolean} true, if the shipment is eligible for economic shipment, otherwise, false
+     */
+    isEligibleForExpressShipment(shipmentType, destination) {
+        const abroadOptions = exports.Options.AbroadMailOptions;
+        this.destinations._verifyDestinationMapLoaded(abroadOptions.EMS.shipmentType);
+        return (shipmentType == abroadOptions.EMS.shipmentType || shipmentType == abroadOptions.PARCEL.shipmentType)
+            && this.destinations.emsDestinationMap.has(destination);
+    }
+    /**
+     * verify if the shipment is eligible for economic shipment
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class
+     * @param {string} destination destination country name (in CamelCase English)
+     * @returns {boolean} true, if the shipment is eligible for economic shipment, otherwise, false
+     */
+    isEligibleForEconomicShipment(shipmentType, destination) {
+        const abroadOptions = exports.Options.AbroadMailOptions;
+        this.destinations._verifyDestinationMapLoaded(abroadOptions.ECO.shipmentType);
+        return (shipmentType == abroadOptions.ECO.shipmentType || shipmentType == abroadOptions.PARCEL.shipmentType)
+            && this.destinations.economicDestinationMap.has(destination);
+    }
     isLocalShipment(destination) {
         return destination.toLowerCase() === 'israel';
     }

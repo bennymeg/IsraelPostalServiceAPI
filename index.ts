@@ -157,6 +157,34 @@ export class IPS {
         return this.destinations.getAllDestination(shipmentType);
     }
 
+    /**
+     * verify if the shipment is eligible for economic shipment
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class 
+     * @param {string} destination destination country name (in CamelCase English) 
+     * @returns {boolean} true, if the shipment is eligible for economic shipment, otherwise, false
+     */
+    isEligibleForExpressShipment(shipmentType: string, destination: string): boolean {
+        const abroadOptions = Options.AbroadMailOptions;
+        this.destinations._verifyDestinationMapLoaded(abroadOptions.EMS.shipmentType);
+
+        return (shipmentType == abroadOptions.EMS.shipmentType || shipmentType == abroadOptions.PARCEL.shipmentType) 
+                && this.destinations.emsDestinationMap.has(destination);
+    }
+
+    /**
+     * verify if the shipment is eligible for economic shipment
+     * @param {string} shipmentType type of shipment as defined in the {@class Options} class 
+     * @param {string} destination destination country name (in CamelCase English) 
+     * @returns {boolean} true, if the shipment is eligible for economic shipment, otherwise, false
+     */
+    isEligibleForEconomicShipment(shipmentType: string, destination: string): boolean {
+        const abroadOptions = Options.AbroadMailOptions;
+        this.destinations._verifyDestinationMapLoaded(abroadOptions.ECO.shipmentType);
+
+        return (shipmentType == abroadOptions.ECO.shipmentType || shipmentType == abroadOptions.PARCEL.shipmentType) 
+                && this.destinations.economicDestinationMap.has(destination);
+    }
+
     private isLocalShipment(destination: string): boolean {
         return destination.toLowerCase() === 'israel';
     }

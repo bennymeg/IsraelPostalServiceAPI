@@ -15,6 +15,8 @@ Exposes Israel postal service API
     * ~~[.calculateLocalBulkShippingRate(weight, shipmentType, shipmentSubtype, serviceOption, quantity)](#IPS+calculateLocalBulkShippingRate) ⇒ <code>Promise.&lt;ResponseParser&gt;</code>~~
     * [.preloadDestinations(shipmentMethod)](#IPS+preloadDestinations)
     * [.getAllDestinations(shipmentType)](#IPS+getAllDestinations) ⇒ <code>Array.&lt;string&gt;</code>
+    * [.isEligibleForExpressShipment(shipmentType, destination)](#IPS+isEligibleForExpressShipment) ⇒ <code>boolean</code>
+    * [.isEligibleForEconomicShipment(shipmentType, destination)](#IPS+isEligibleForEconomicShipment) ⇒ <code>boolean</code>
 
 <a name="IPS+calculateShippingRate"></a>
 
@@ -147,4 +149,30 @@ return all the available destinations for the shipment type
 | Param | Type | Description |
 | --- | --- | --- |
 | shipmentType | <code>string</code> | type of shipment as defined in the {@class Options} class |
+
+<a name="IPS+isEligibleForExpressShipment"></a>
+
+### IPS.isEligibleForExpressShipment(shipmentType, destination) ⇒ <code>boolean</code>
+verify if the shipment is eligible for economic shipment
+
+**Kind**: instance method of [<code>IPS</code>](#IPS)  
+**Returns**: <code>boolean</code> - true, if the shipment is eligible for economic shipment, otherwise, false  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| shipmentType | <code>string</code> | type of shipment as defined in the {@class Options} class |
+| destination | <code>string</code> | destination country name (in CamelCase English) |
+
+<a name="IPS+isEligibleForEconomicShipment"></a>
+
+### IPS.isEligibleForEconomicShipment(shipmentType, destination) ⇒ <code>boolean</code>
+verify if the shipment is eligible for economic shipment
+
+**Kind**: instance method of [<code>IPS</code>](#IPS)  
+**Returns**: <code>boolean</code> - true, if the shipment is eligible for economic shipment, otherwise, false  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| shipmentType | <code>string</code> | type of shipment as defined in the {@class Options} class |
+| destination | <code>string</code> | destination country name (in CamelCase English) |
 
