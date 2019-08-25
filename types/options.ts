@@ -17,7 +17,7 @@ export declare interface OptionsType {
     LocalBulkMailOptions: LocalBulkMailOptionsType;
     AbroadMailOptions: AbroadMailOptionsType;
     AbroadBulkMailOptions: AbroadBulkMailOptionsType;
-    UniqueShipmentTypes: any;
+    ShipmentMethods: any;
 }
 
 export declare type LocalMailOptionsType = {
