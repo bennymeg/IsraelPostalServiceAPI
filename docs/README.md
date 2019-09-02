@@ -1,6 +1,6 @@
 # Israel Postal Service API
 An API for Israel postal service - query shipment price easily.
-Supports both NodeJS and browser environments. 📦 [Documentation](https://bennymeg.github.io/IsraelPostalServiceAPI/).
+Supports both NodeJS and browser environments.
 
 [![licence](https://img.shields.io/github/license/bennymeg/IsraelPostalServiceAPI.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/israel-postal-service-api.svg)](https://www.npmjs.com/package/israel-postal-service-api)
@@ -46,30 +46,6 @@ console.log(response.getTotalPrice());
 ## Supported Environments ##
 - 💻 Browser (including browserify / webpack based environments [such as Angular])
 - 🖥  Node.js
-
-## Documentation ##  
-- 👨🏼‍💻 [API](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/API.md),  
-- 👩🏼‍🏫 [Examples](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/examples),  
-- 📜 [Change log](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/CHANGELOG.md),  
-- 🖋 [Licence](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
-
-## Support ##
-If you're having any problem, please [raise an issue](https://github.com/bennymeg/IsraelPostalServiceAPI/issues/new) on GitHub and we'll be happy to help.
-
-
-## Contribute ##
-- 👾 [Issue Tracker](https://github.com/bennymeg/IsraelPostalServiceAPI/issues),
-- 📦 [Source Code](https://github.com/bennymeg/IsraelPostalServiceAPI/)
-
-Before submitting a pull request, please make sure that you include tests, and that [jshint](http://jshint.com) runs without any warnings: [Download VSCode extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.jshint).
-
-## Test ## 
-Run the test suite by executing:
-
-```sh
-$ npm test
-```
-
 
 ___
 > ***Note***:

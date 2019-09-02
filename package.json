@@ -1,13 +1,13 @@
 {
   "name": "israel-postal-service-api",
-  "version": "3.0.0-beta.10",
+  "version": "3.0.0-beta.11",
   "description": "Israel postal office pricing calculator",
   "main": "./dist/index.js",
   "browser": {
     "request": "xhr",
     "./dist/src/dynamic/xhr-node.js": "./dist/src/dynamic/xhr-browser.js"
   },
-  "homepage": "https://github.com/bennymeg/IsraelPostalServiceAPI",
+  "homepage": "https://bennymeg.github.io/IsraelPostalServiceAPI/",
   "scripts": {
     "compile": "tsc && XCOPY /S /y .\\mapping\\data\\* .\\dist\\mapping\\data\\",
     "start": "npm run lint && npm run compile && node ./dist/index.js",
