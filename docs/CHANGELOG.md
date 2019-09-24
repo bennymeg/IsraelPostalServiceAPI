@@ -1,6 +1,20 @@
 # Change Log
 
 <a name=""></a>
+## [3.0.0](https://github.com/bennymeg/IsraelPostalServiceAPI/compare/v2.0.0...v3.0.0) (2019-09-25)
+
+### Features
+* full typescript support
+* simpler api - simplified calculation methods + added new generale methods (i.e. eligibility test for the different shipment methods and destinations)
+* updated destinations
+* migrated to more robust dependencies
+* improved tests
+* smaller size
+
+### Bug Fixes
+* fix bulk shipment calculation method
+
+<a name=""></a>
 ## [2.0.0](https://github.com/bennymeg/IsraelPostalServiceAPI/compare/v1.0.0...v2.0.0) (2019-01-26)
 
 ### Features
