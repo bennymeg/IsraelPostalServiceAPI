@@ -1,13 +1,25 @@
+<p align="center">
+<a href="https://bennymeg.github.io/IsraelPostalServiceAPI/">
+<img src="https://raw.githubusercontent.com/bennymeg/IsraelPostalServiceAPI/master/docs/_media/ips-api.png" width="240">
+</p>
+</a>
+
+<div align="center">
+
 # Israel Postal Service API
 An API for Israel postal service - query shipment price easily.
-Supports both NodeJS and browser environments. 📦 [Documentation](https://bennymeg.github.io/IsraelPostalServiceAPI/).
+Supports both NodeJS and browser environments.
 
 [![licence](https://img.shields.io/github/license/bennymeg/IsraelPostalServiceAPI.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/israel-postal-service-api.svg)](https://www.npmjs.com/package/israel-postal-service-api)
 [![Dependencies status](https://david-dm.org/bennymeg/IsraelPostalServiceAPI/status.svg)](https://david-dm.org/bennymeg/IsraelPostalServiceAPI)
+[![Documentation](https://img.shields.io/badge/%F0%9F%93%83-Documentation-blue)](https://bennymeg.github.io/IsraelPostalServiceAPI/)
 <!-- [![github version](https://img.shields.io/github/package-json/v/badges/shields.svg)](https://github.com/bennymeg/IsraelPostalServiceAPI) -->
 <!-- ![GitHub repository size in bytes](https://img.shields.io/github/languages/code-size/badges/shields.svg) -->
 
+</div>
+
+<hr></br>
 
 ## Installation
 ```bash
@@ -48,6 +60,7 @@ console.log(response.getTotalPrice());
 - 🖥  Node.js
 
 ## Documentation ##  
+- 📔 [Full Documentation](https://bennymeg.github.io/IsraelPostalServiceAPI/),
 - 👨🏼‍💻 [API](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/API.md),  
 - 👩🏼‍🏫 [Examples](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/examples),  
 - 📜 [Change log](https://github.com/bennymeg/IsraelPostalServiceAPI/blob/master/docs/CHANGELOG.md),  
