@@ -1,6 +1,7 @@
 "use strict";
 // Copyright 2019 Benny Megidish
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ShipmentMethods = exports.AbroadBulkMailOptions = exports.AbroadMailOptions = exports.LocalBulkMailOptions = exports.LocalMailOptions = void 0;
 /**
  * This module contains all the shipping options enumerations
  * @author Benny Megidish

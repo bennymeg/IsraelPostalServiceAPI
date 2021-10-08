@@ -1,6 +1,6 @@
 {
   "name": "israel-postal-service-api",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Israel postal office pricing calculator",
   "main": "./dist/index.js",
   "browser": {
@@ -36,19 +36,19 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/chai": "^4.2.4",
+    "@types/chai": "^4.2.22",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.7",
-    "@types/request": "^2.48.3",
-    "chai": "^4.2.0",
-    "jshint": "^2.10.3",
-    "mocha": "^6.2.2",
-    "ts-node": "^8.5.0",
-    "typescript": "^3.7.2",
+    "@types/node": "^12.20.28",
+    "@types/request": "^2.48.7",
+    "chai": "^4.3.4",
+    "jshint": "^2.13.1",
+    "mocha": "^6.2.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.10",
     "xmlhttprequest": "^1.8.0"
   },
   "dependencies": {
-    "request": "^2.88.0",
-    "xhr": "^2.5.0"
+    "request": "^2.88.2",
+    "xhr": "^2.6.0"
   }
 }
